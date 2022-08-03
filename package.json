@@ -1,5 +1,5 @@
 {
-  "name": "@vert/framework-vert-core",
+  "name": "@vert-frame-core/design-system",
   "version": "0.1.4",
   "description": "Framework baseado no design system da Vert ",
   "keywords": [
@@ -15,7 +15,7 @@
   "author": "Vert Tech",
   "repository": {
     "type": "git",
-    "url": "https://github.com/deboracastrodev/frame-vert-core"
+    "url": "git+https://github.com/deboracastrodev/frame-vert-core.git"
   },
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
@@ -31,7 +31,9 @@
   "files": [
     "dist"
   ],
-  "bugs": "https://github.com/logustra/vivu-npm/issues",
+  "bugs": {
+    "url": "https://github.com/deboracastrodev/frame-vert-core/issues"
+  },
   "scripts": {
     "prepare": "husky install",
     "clean:dist": "rimraf dist",
@@ -81,5 +83,9 @@
   },
   "volta": {
     "node": "14.19.1"
+  },
+  "homepage": "https://github.com/deboracastrodev/frame-vert-core#readme",
+  "directories": {
+    "test": "test"
   }
 }
