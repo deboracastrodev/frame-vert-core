@@ -5,16 +5,16 @@
       <table class="v-table__header">
         <thead>
           <tr>
-            <th v-for="col in cols">{{ col }}</th>
+            <th v-for="col in cols" class="v-table__cell">{{ col }}</th>
           </tr>
         </thead>
       </table>
     </div>
     <div class="v-table__body-wrapper">
-      <table class="table">
+      <table class="v-table__body">
         <tbody>
-          <tr v-for="row in rows">
-            <td v-for="col in cols">{{ row[col] }}</td>
+          <tr class="v-table__row" v-for="row in rows">
+            <td v-for="col in cols" class="v-table__cell">{{ row[col] }}</td>
           </tr>
         </tbody>
       </table>
@@ -52,6 +52,19 @@ defineProps({
   background-color: #ffffff;
 }
 
+.v-table table {
+  border-spacing: 0;
+}
+
+.v-table thead {
+  color: #00747a;
+  font-weight: 500;
+}
+
+.v-table thead tr {
+  font-weight: 700;
+}
+
 .v-table__header-wrapper {
   overflow: hidden;
   width: 100%;
@@ -60,5 +73,53 @@ defineProps({
 .v-table__header {
   table-layout: fixed;
   border-collapse: separate;
+  background-color: #e6f1f2;
+  width: 100%;
+}
+
+.v-table .v-table__header .v-table__cell {
+  padding: 8px 0;
+  min-width: 0;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  position: relative;
+  text-align: left;
+  z-index: 1;
+  font-size: .8125rem;
+}
+
+.v-table__body-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.v-table__body {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.v-table tbody {
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.v-table .v-table__row {
+  border-bottom: solid .063rem #e9e9e9;
+  text-decoration: none;
+  line-height: 1rem;
+}
+
+.v-table .v-table__body .v-table__cell {
+  box-sizing: border-box;
+  vertical-align: middle;
+  font-weight: 400;
+  padding: 1rem 0;
+}
+
+.v-table--enable-row-hover .v-table__body tr:hover>td.v-table__cell {
+  background-color: rgba(230, 241, 242, .4);
 }
 </style>
