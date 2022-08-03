@@ -1,4 +1,5 @@
 
-import HelloWorld from './helloWorld.vue'
-export default HelloWorld
-export * from './helloWorld.vue'
+import VTable from './VTable.vue'
+
+export default VTable
+export * from './VTable.vue'
