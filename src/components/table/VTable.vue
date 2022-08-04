@@ -9,8 +9,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="v-table__row" v-for="row in rows">
-            <td v-for="col in cols" class="v-table__cell">{{ row[col] }}</td>
+          <tr class="v-table__row" v-for="(row, index) in rows" :key="index">
+            <td v-for="col in cols" class="v-table__cell">{{ (row as any)[(col as any)] }}</td>
           </tr>
         </tbody>
       </table>
