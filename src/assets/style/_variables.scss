@@ -7,6 +7,18 @@ $color-primary-light: #f4f4f4;
 $color-primary-medium: #eee;
 $color-primary-dark: #e0e0e0;
 
+// Low
+$neutral-color-low-pure: #171919;
+$neutral-color-low-light: #c9c9c9;
+$neutral-color-low-medium: #aaa;
+$neutral-color-low-dark: #4a4a4a;
+
+// Hight
+$neutral-color-hight-pure: #fff;
+$neutral-color-hight-light: #f4f4f4;
+$neutral-color-hight-medium: #eee;
+$neutral-color-hight-dark: #e0e0e0;
+
 // --- === Feedback colors === --- //
 $feedback-color-helper-pure: #f07363;
 $feedback-color-helper-light: #f8d7da;
@@ -50,3 +62,10 @@ $font-size-xxl: 48px;
 $font-size-xxxl: 64px;
 $font-size-display: 80px;
 $font-size-giant: 96px;
+
+%transition-link {
+  transition: ease-in-out 0.25s opacity;
+  &:hover {
+    opacity: 0.5;
+  }
+}

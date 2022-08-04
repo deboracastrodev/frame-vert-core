@@ -1,12 +1,3 @@
-// @mixin fontface($name, $file, $weight, $style: normal) {
-//   @font-face {
-//     font-family: "#{$name}";
-//     src: url("../font/#{$file}") format("truetype");
-//     font-weight: $weight;
-//     font-style: $style;
-//   }
-// }
-
 $breakpoints: (
   xs: 0,
   sm: 576px,
@@ -56,10 +47,10 @@ $breakpoints: (
   font-weight: normal;
 }
 
-@mixin close-me($time: 1s) {
-  transition: transform ease-in-out $time;
+// @mixin close-me($time: 1s) {
+//   transition: transform ease-in-out $time;
 
-  &:hover {
-    animation: close-me $time infinite;
-  }
-}
+//   &:hover {
+//     animation: close-me $time infinite;
+//   }
+// }
