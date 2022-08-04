@@ -21,9 +21,14 @@
       ]"
       :cols="['column1', 'column2', 'column3']"
     />
-    <v-button size="lg" outline="true" status="success"
-      >TESTE bla bla bla</v-button
-    >
+    <div class="d-flex">
+      <v-button size="lg" status="helper">Erro</v-button>
+      <v-button size="lg" status="wargning">Aviso</v-button>
+
+      <v-button size="lg" status="success">Sucesso</v-button>
+
+      <v-button size="lg" status="default">Padrão</v-button>
+    </div>
   </div>
 </template>
 
@@ -40,3 +45,10 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss">
+.d-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>
+/>
