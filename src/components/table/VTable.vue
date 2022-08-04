@@ -1,17 +1,13 @@
 <template>
   <!-- create a hmtl for a table component -->
   <div class="v-table">
-    <div class="v-table__header-wrapper">
-      <table class="v-table__header">
+    <div class="v-table__body-wrapper">
+      <table class="responsive-table">
         <thead>
           <tr>
             <th v-for="col in cols" class="v-table__cell">{{ col }}</th>
           </tr>
         </thead>
-      </table>
-    </div>
-    <div class="v-table__body-wrapper">
-      <table class="v-table__body">
         <tbody>
           <tr class="v-table__row" v-for="row in rows">
             <td v-for="col in cols" class="v-table__cell">{{ row[col] }}</td>
@@ -38,7 +34,9 @@ defineProps({
   }
 })
 </script>
-<style lang="css">
+<style src="./VTable.scss">
+</style>
+<!-- <style lang="css">
 .v-table {
   position: relative;
   overflow-y: auto;
@@ -122,4 +120,4 @@ defineProps({
 .v-table--enable-row-hover .v-table__body tr:hover>td.v-table__cell {
   background-color: rgba(230, 241, 242, .4);
 }
-</style>
+</style> -->

@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import VTable from './VTable.vue'
+import VTable from './components/table/VTable.vue'
 
 export default defineComponent({
   name: 'App',

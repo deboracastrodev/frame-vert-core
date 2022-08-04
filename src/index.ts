@@ -1,5 +1,5 @@
 
-import VTable from './VTable.vue'
+import VTable from './components/table/VTable.vue'
 
 export default VTable
-export * from './VTable.vue'
+export * from './components/table/VTable.vue'
