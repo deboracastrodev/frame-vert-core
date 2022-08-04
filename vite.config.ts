@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
     build = {
       lib: {
         entry: resolve(__dirname, 'src/index.ts'),
-        name: 'framework-vert-core',
+        name: 'design-system',
         fileName: 'index',
         formats: ['es', 'cjs', 'umd'],
       },
