@@ -1,20 +1,38 @@
-.v {
-  &__btn {
-    border-radius: $border-radius-pill;
-    width: fit-content;
-    font-size: 0.875rem;
-    // padding: 0.75rem 2rem;
-    display: inline-block;
-    transition: all ease-in-out 0.25s;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    font-weight: bold;
-  }
+$btns-color: (
+  "helper": $feedback-color-helper-pure,
+  "warning": $feedback-color-warning-pure,
+  "success": $feedback-color-success-pure,
+  "primary": $feedback-color-default-pure,
+  "target": $target,
+);
+
+.v__btn {
+  font-family: "Lato", sans-serif;
+  margin: .25rem;
+  border-radius: $border-radius-pill;
+  width: fit-content;
+  font-size: 0.875rem;
+  display: inline-block;
+  transition: all ease-in-out 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
 }
 
 @mixin btn($color, $type: solid) {
   @extend .v__btn;
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($color, 0.24)
+  }
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    outline: 0;
+  }
 
   // TYPES
   @if $type ==solid {
@@ -22,10 +40,13 @@
     border: solid 1px $color;
     background-color: $color;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
       background-color: darken($color, 5);
       border-color: darken($color, 5);
     }
+
   }
 
   @else if $type ==outline {
@@ -33,7 +54,9 @@
     border: solid 1px $color;
     background-color: transparent;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
       background-color: rgba($color, $alpha: .2);
     }
   }
@@ -57,30 +80,72 @@
   }
 }
 
-$btns-color: (
-  "helper": $feedback-color-helper-pure,
-  "warning": $feedback-color-warning-pure,
-  "success": $feedback-color-success-pure,
-  "default": $feedback-color-default-pure,
-);
-
 @include create-btn($btns-color);
 
 // .v-btn--color
 // .v-btn__outline--color
 
 [class^="v-btn-"] {
-  &.v-btn-sm {
-    padding: 0.375rem 1.5rem;
-  }
+  &.v-btn {
+    &--sm {
+      padding: 0.375rem 1.5rem;
+    }
 
-  &.v-btn-md {
-    padding: 0.75rem 2rem;
-  }
+    &--md {
+      padding: 0.75rem 2rem;
+    }
 
-  &.v-btn-lg {
-    font-size: 1rem;
-    padding: 0.75rem 2rem;
+    &--lg {
+      font-size: 1rem;
+      padding: 0.75rem 2rem;
+    }
+
+    &--icon {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 3.5rem;
+      width: fit-content;
+
+      i.mdi {
+        left: 1.5rem;
+        position: absolute;
+        font-size: 1.25rem;
+        margin-right: 1rem;
+      }
+    }
+
+    &--default {
+      font-size: 0.875rem;
+      border-radius: $border-radius-pill;
+      padding: 0.75rem 2rem;
+      width: fit-content;
+      display: inline-block;
+      transition: all ease-in-out 0.25s;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      // color: $brand-color-primary-pure;
+      background: $neutral-color-hight-pure;
+      // border: 1px solid $brand-color-primary-pure;
+      box-shadow: 0 4px 8px 0 rgba(0, 116, 122, 0.24);
+
+      &:hover {
+        color: $neutral-color-hight-pure;
+        // background: $brand-color-primary-pure;
+      }
+    }
+
+    &--not {
+      @extend %transition-link;
+      text-decoration: none;
+      // color: $brand-color-primary-pure;
+      border: none;
+      background: transparent;
+      font-weight: bold;
+      padding: 0.75rem 2rem;
+    }
   }
 
   &.mdi {
@@ -88,11 +153,11 @@ $btns-color: (
     align-items: center;
     padding: 0.5rem 2rem 0.5rem 1.5rem;
 
-    &.v-btn-sm {
+    &.v-btn--sm {
       padding: 3px 1.5rem 3px 1rem;
     }
 
-    &.v-btn-lg {
+    &.v-btn--lg {
       padding: 0.75rem 2rem 0.75rem 1.5rem;
     }
 
@@ -102,55 +167,4 @@ $btns-color: (
       padding-right: 0.5rem;
     }
   }
-
-  &.v-btn-icon {
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding-left: 3.5rem;
-    width: fit-content;
-
-    i.mdi {
-      left: 1.5rem;
-      position: absolute;
-      font-size: 1.25rem;
-      margin-right: 1rem;
-    }
-  }
-
-  &.mt-2 {
-    margin-top: 2rem;
-  }
-}
-
-.v-btn-default {
-  font-size: 0.875rem;
-  border-radius: $border-radius-pill;
-  padding: 0.75rem 2rem;
-  width: fit-content;
-  display: inline-block;
-  transition: all ease-in-out 0.25s;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  font-weight: bold;
-  // color: $brand-color-primary-pure;
-  background: $neutral-color-hight-pure;
-  // border: 1px solid $brand-color-primary-pure;
-  box-shadow: 0 4px 8px 0 rgba(0, 116, 122, 0.24);
-
-  &:hover {
-    color: $neutral-color-hight-pure;
-    // background: $brand-color-primary-pure;
-  }
-}
-
-.v-btn-not {
-  @extend %transition-link;
-  text-decoration: none;
-  // color: $brand-color-primary-pure;
-  border: none;
-  background: transparent;
-  font-weight: bold;
-  padding: 0.75rem 2rem;
 }
