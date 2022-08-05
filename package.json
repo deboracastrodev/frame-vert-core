@@ -25,6 +25,7 @@
   "types": "./dist/types/index.d.ts",
   "unpkg": "./dist/index.umd.js",
   "jsdelivr": "./dist/index.umd.js",
+  "style": "./dist/style.css",
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
