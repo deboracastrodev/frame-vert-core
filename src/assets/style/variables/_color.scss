@@ -39,35 +39,3 @@ $feedback-color-default-pure: #00747a;
 $feedback-color-default-light: #e6f1f2;
 $feedback-color-default-medium: #004649;
 $feedback-color-default-dark: #123229;
-
-$border-radius-sm: 8px;
-$border-radius-md: 16px;
-$border-radius-lg: 24px;
-$border-radius-pill: 500px;
-$border-radius-circular: 100%;
-
-$border-width-hairline: 1px;
-$border-width-thin: 2px;
-$border-width-thick: 4px;
-$border-width-heavy: 8px;
-
-$font-size-xxxs: 12px;
-$font-size-xxs: 14px;
-$font-size-xs: 16px;
-$font-size-sm: 21px;
-$font-size-md: 24px;
-$font-size-lg: 32px;
-$font-size-xl: 40px;
-$font-size-xxl: 48px;
-$font-size-xxxl: 64px;
-$font-size-display: 80px;
-$font-size-giant: 96px;
-
-%transition-link {
-  transition: ease-in-out 0.25s opacity;
-  &:hover {
-    opacity: 0.5;
-  }
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');

@@ -1,0 +1,6 @@
+%transition-link {
+  transition: ease-in-out 0.25s opacity;
+  &:hover {
+    opacity: 0.5;
+  }
+}
