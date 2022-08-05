@@ -1,10 +1,14 @@
 <template>
   <button :class="[setSizeClass, setStatus]">
+    <div v-if="icon" class="v-btn--img">
+      <img :src="setIcon" />
+    </div>
     <slot />
   </button>
 </template>
 
 <script lang="ts">
+import { log } from "console";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -21,6 +25,11 @@ export default defineComponent({
     status: {
       type: String,
       default: "helper",
+      required: true,
+    },
+    icon: {
+      type: String,
+      required: false,
     },
   },
   computed: {
@@ -33,10 +42,12 @@ export default defineComponent({
         : `v-btn--${this.status}`;
       return status;
     },
+    setIcon(): string {
+      console.log(this.icon);
+      return `/static/icons/${this.icon}.svg`;
+    },
   },
 });
 </script>
-
-
 
 <style src="./VButton.scss" />

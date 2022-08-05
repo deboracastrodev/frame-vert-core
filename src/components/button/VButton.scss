@@ -3,7 +3,6 @@ $btns-color: (
   "warning": $feedback-color-warning-pure,
   "success": $feedback-color-success-pure,
   "primary": $feedback-color-default-pure,
-  "target": $target,
 );
 
 .v__btn {
@@ -12,20 +11,23 @@ $btns-color: (
   border-radius: $border-radius-pill;
   width: fit-content;
   font-size: 0.875rem;
-  display: inline-block;
   transition: all ease-in-out 0.25s;
   cursor: pointer;
   text-decoration: none;
-  text-align: center;
   font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  @include mq(sm) {
+    flex-wrap: nowrap;
+  }
 }
 
 @mixin btn($color, $type: solid) {
   @extend .v__btn;
 
-  &:focus {
-    box-shadow: 0 0 0 0.25rem rgba($color, 0.24)
-  }
+
 
   &:hover,
   &:active,
@@ -46,7 +48,18 @@ $btns-color: (
       background-color: darken($color, 5);
       border-color: darken($color, 5);
     }
+    & .v-btn--img{
+      width: 1.25rem;
+      height: 1.25rem;
+      img {
+        filter: invert(1);
+        width: 1.25rem;
 
+      }
+    }
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgba($color, 0.24)
+    }
   }
 
   @else if $type ==outline {
@@ -58,6 +71,21 @@ $btns-color: (
     &:active,
     &:focus {
       background-color: rgba($color, $alpha: .2);
+    }
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgba($color, 0.10)
+    }
+    & .v-btn--img {
+      border-radius: 100%;
+      background-color: rgba($color, $alpha: .5);
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      align-items: center;
+      > img{
+        filter: invert(1);
+        width: 1rem;
+      }
     }
   }
 
@@ -147,24 +175,14 @@ $btns-color: (
       padding: 0.75rem 2rem;
     }
   }
-
-  &.mdi {
+  & .v-btn--img {
     display: flex;
     align-items: center;
-    padding: 0.5rem 2rem 0.5rem 1.5rem;
-
-    &.v-btn--sm {
-      padding: 3px 1.5rem 3px 1rem;
-    }
-
-    &.v-btn--lg {
-      padding: 0.75rem 2rem 0.75rem 1.5rem;
-    }
-
-    &::before {
-      // @include icon("\F0415", 1.5rem);
-      font-size: 1.5rem;
-      padding-right: 0.5rem;
-    }
+    justify-content: center;
+    border-radius: 100%;
+    margin-right: .5rem;
+    // > img{
+    //   width: 1.25rem;
+    // }
   }
 }
