@@ -1,6 +1,7 @@
 <template>
-  <!-- <button class="v-btn--helper"></button> <br /> -->
-  <button :class="[setSizeClass, setStatus]"><slot /></button>
+  <button :class="[setSizeClass, setStatus]">
+    <slot />
+  </button>
 </template>
 
 <script lang="ts">
@@ -48,5 +49,6 @@ export default defineComponent({
   },
 });
 </script>
+
 
 <style src="./VButton.scss" />

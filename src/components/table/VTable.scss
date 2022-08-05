@@ -1,6 +1,3 @@
-@use '@/assets/style/variables.scss' as *;
-@import '@/assets/style/mixins.scss';
-
 table.clear-table {
   border: 1px solid $table-bg-color-low-medium;
   border-radius: $border-radius-lg;

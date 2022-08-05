@@ -1,9 +1,6 @@
-@use '@/assets/style/variables.scss' as v;
-@use '@/assets/style/mixins.scss' as m;
-
-.v{
-  &__btn{
-    border-radius: v.$border-radius-pill;
+.v {
+  &__btn {
+    border-radius: $border-radius-pill;
     width: fit-content;
     font-size: 0.875rem;
     // padding: 0.75rem 2rem;
@@ -16,34 +13,44 @@
   }
 }
 
-@mixin btn($color, $type: solid){
+@mixin btn($color, $type: solid) {
   @extend .v__btn;
+
   // TYPES
-  @if $type == solid {
-    color: v.$neutral-color-hight-pure;
+  @if $type ==solid {
+    color: $neutral-color-hight-pure;
     border: solid 1px $color;
     background-color: $color;
+
     &:hover {
       background-color: darken($color, 5);
       border-color: darken($color, 5);
     }
-  } @else if $type == outline {
+  }
+
+  @else if $type ==outline {
     color: $color;
     border: solid 1px $color;
     background-color: transparent;
+
     &:hover {
       background-color: rgba($color, $alpha: .2);
     }
-  } @else {
+  }
+
+  @else {
     @error "Algo deu ruim no #{$color} ou no #{$type}";
   }
 }
 
 @mixin create-btn($btns) {
-  @each $name, $color in $btns {
+
+  @each $name,
+  $color in $btns {
     .v-btn--#{$name} {
       @include btn($color);
     }
+
     .v-btn__outline--#{$name} {
       @include btn($color, outline);
     }
@@ -51,10 +58,10 @@
 }
 
 $btns-color: (
-  "helper": v.$feedback-color-helper-pure,
-  "wargning": v.$feedback-color-wargning-pure,
-  "success": v.$feedback-color-success-pure,
-  "default": v.$feedback-color-default-pure,
+  "helper": $feedback-color-helper-pure,
+  "warning": $feedback-color-warning-pure,
+  "success": $feedback-color-success-pure,
+  "default": $feedback-color-default-pure,
 );
 
 @include create-btn($btns-color);
@@ -66,35 +73,43 @@ $btns-color: (
   &.v-btn-sm {
     padding: 0.375rem 1.5rem;
   }
+
   &.v-btn-md {
     padding: 0.75rem 2rem;
   }
+
   &.v-btn-lg {
     font-size: 1rem;
     padding: 0.75rem 2rem;
   }
+
   &.mdi {
     display: flex;
     align-items: center;
     padding: 0.5rem 2rem 0.5rem 1.5rem;
+
     &.v-btn-sm {
       padding: 3px 1.5rem 3px 1rem;
     }
+
     &.v-btn-lg {
       padding: 0.75rem 2rem 0.75rem 1.5rem;
     }
+
     &::before {
       // @include icon("\F0415", 1.5rem);
       font-size: 1.5rem;
       padding-right: 0.5rem;
     }
   }
+
   &.v-btn-icon {
     display: flex;
     align-items: center;
     position: relative;
     padding-left: 3.5rem;
     width: fit-content;
+
     i.mdi {
       left: 1.5rem;
       position: absolute;
@@ -102,6 +117,7 @@ $btns-color: (
       margin-right: 1rem;
     }
   }
+
   &.mt-2 {
     margin-top: 2rem;
   }
@@ -109,7 +125,7 @@ $btns-color: (
 
 .v-btn-default {
   font-size: 0.875rem;
-  border-radius: v.$border-radius-pill;
+  border-radius: $border-radius-pill;
   padding: 0.75rem 2rem;
   width: fit-content;
   display: inline-block;
@@ -118,20 +134,21 @@ $btns-color: (
   text-decoration: none;
   text-align: center;
   font-weight: bold;
-  // color: v.$brand-color-primary-pure;
-  background: v.$neutral-color-hight-pure;
-  // border: 1px solid v.$brand-color-primary-pure;
+  // color: $brand-color-primary-pure;
+  background: $neutral-color-hight-pure;
+  // border: 1px solid $brand-color-primary-pure;
   box-shadow: 0 4px 8px 0 rgba(0, 116, 122, 0.24);
+
   &:hover {
-    color: v.$neutral-color-hight-pure;
-    // background: v.$brand-color-primary-pure;
+    color: $neutral-color-hight-pure;
+    // background: $brand-color-primary-pure;
   }
 }
 
 .v-btn-not {
   @extend %transition-link;
   text-decoration: none;
-  // color: v.$brand-color-primary-pure;
+  // color: $brand-color-primary-pure;
   border: none;
   background: transparent;
   font-weight: bold;

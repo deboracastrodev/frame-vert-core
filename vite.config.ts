@@ -94,16 +94,15 @@ export default defineConfig(({ mode }) => {
           replacement: resolve(__dirname, './src'),
         },
       ],
-      css: {
-        preprocessorOptions: {
-          scss: {
-            additionalData: `
-              @import "@/assets/style/_variables.scss";
-              @import "@/assets/style/main.scss";
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+              @import "./src/assets/main.scss";
             `
-          }
         }
       }
-    },
+    }
   }
 })

@@ -25,10 +25,10 @@ $feedback-color-helper-light: #f8d7da;
 $feedback-color-helper-medium: #c05c4f;
 $feedback-color-helper-dark: #783931;
 
-$feedback-color-wargning-pure: #e6cf42;
-$feedback-color-wargning-light: #fff9db;
-$feedback-color-wargning-medium: #b8a635;
-$feedback-color-wargning-dark: #736721;
+$feedback-color-warning-pure: #e6cf42;
+$feedback-color-warning-light: #fff9db;
+$feedback-color-warning-medium: #b8a635;
+$feedback-color-warning-dark: #736721;
 
 $feedback-color-success-pure: #41d394;
 $feedback-color-success-light: #d4edda;
@@ -65,6 +65,7 @@ $font-size-giant: 96px;
 
 %transition-link {
   transition: ease-in-out 0.25s opacity;
+
   &:hover {
     opacity: 0.5;
   }
