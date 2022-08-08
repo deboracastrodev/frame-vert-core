@@ -1,9 +1,7 @@
-//export multiple components from one file
+import VTableComp from './components/table/VTable.vue'
+import VButtonComp from './components/button/VButton.vue'
 
-import VTable from './components/table/VTable.vue'
-import VButton from './components/button/VButton.vue'
+const VTable = VTableComp;
+const VButton = VButtonComp;
 
-export { VTable, VButton }
-
-// export * from './components/table/VTable.vue'
-// export * from './components/button/VButton.vue'
+export { VTable, VButton };
