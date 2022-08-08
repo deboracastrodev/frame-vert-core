@@ -16,22 +16,25 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-defineProps({
-  rows: {
-    type: Array,
-    default: () => [
-      { column1: 'row1column1', column2: 'row1column2', column3: 'row1column3' },
-      { column1: 'row2column1', column2: 'row2column2', column3: 'row2column3' },
-      { column1: 'row3column1', column2: 'row3column2', column3: 'row3column3' }
-    ]
+export default defineComponent({
+  name: 'VTable',
+  props: {
+    rows: {
+      type: Array,
+      required: true,
+    },
+    cols: {
+      type: Array,
+      required: true,
+    },
   },
-  cols: {
-    type: Array,
-    default: () => ['column1', 'column2', 'column3']
-  }
-})
+});
 </script>
+
+
+
 
 <style src="./VTable.scss" />

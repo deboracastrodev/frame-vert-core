@@ -1,11 +1,17 @@
-import VTable from '@/components/table/VTable.vue'
-import VButton from './components/button/VButton.vue'
+/* eslint-disable */
+import { App as Application, Plugin } from "vue";
+import * as components from "./components/index";
+import { setVueInstance } from "./utils/config/index";
 
-export default {
-  install: (app: any, options: any): void => {
-    app.component('VTable', VTable)
-    app.component('VButton', VButton)
+const install: Exclude<Plugin["install"], undefined> = (
+  instance: Application
+) => {
+  setVueInstance(instance);
+  for (const componentKey in components) {
+    instance.use((components as any)[componentKey]);
   }
-}
+};
 
-export { VTable, VButton }
+export default install;
+
+export * from "./components";
