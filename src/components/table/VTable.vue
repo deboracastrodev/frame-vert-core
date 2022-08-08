@@ -1,5 +1,4 @@
 <template>
-  <!-- create a hmtl for a table component -->
   <div class="v-table">
     <div class="v-table__body-wrapper">
       <table class="responsive-table">

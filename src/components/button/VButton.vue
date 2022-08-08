@@ -8,7 +8,6 @@
 </template>
 
 <script lang="ts">
-import { log } from "console";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -43,7 +42,6 @@ export default defineComponent({
       return status;
     },
     setIcon(): string {
-      console.log(this.icon);
       return `/static/icons/${this.icon}.svg`;
     },
   },

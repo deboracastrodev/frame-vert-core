@@ -32,7 +32,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { VTable, VButton } from "./index";
+import { VTable } from "./index";
+import { VButton } from "./index";
 
 export default defineComponent({
   name: "App",

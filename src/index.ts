@@ -1,10 +1,11 @@
-import VTableComp from './components/table/VTable.vue'
-import VButtonComp from './components/button/VButton.vue'
+import VTable from '@/components/table/VTable.vue'
+import VButton from './components/button/VButton.vue'
 
-const VTable = VTableComp;
-const VButton = VButtonComp;
+export default {
+  install: (app: any, options: any): void => {
+    app.component('VTable', VTable)
+    app.component('VButton', VButton)
+  }
+}
 
-export { VTable, VButton };
-
-export * from './components/table/VTable.vue';
-export * from './components/button/VButton.vue';
+export { VTable, VButton }
