@@ -5,3 +5,6 @@ const VTable = VTableComp;
 const VButton = VButtonComp;
 
 export { VTable, VButton };
+
+export * from './components/table/VTable.vue';
+export * from './components/button/VButton.vue';
