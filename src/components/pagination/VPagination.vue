@@ -29,11 +29,7 @@ export default defineComponent({
     size: {
       type: Number,
       default: 5,
-    },
-    cols: {
-      type: Array,
-      default: () => [],
-    },
+    }
   },
   data() {
     return {
@@ -62,6 +58,7 @@ export default defineComponent({
 });
 
 </script>
+
 
 
 
