@@ -34,7 +34,4 @@ export default defineComponent({
 });
 </script>
 
-
-
-
-<style src="./VTable.scss" />
+<style src="./VTable.scss" lang="scss" />

@@ -48,4 +48,5 @@ export default defineComponent({
 });
 </script>
 
-<style src="./VButton.scss" />
+
+<style src="./VButton.scss" lang="scss" />

@@ -1,4 +1,7 @@
-import VTable from "./table/VTable.vue";
-import VButton from "./button/VButton.vue";
+import VButton from './button/VButton.vue';
+import VTable from './table/VTable.vue';
 
-export { VTable, VButton };
+export {
+  VButton,
+  VTable
+}
