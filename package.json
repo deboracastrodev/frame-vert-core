@@ -1,6 +1,6 @@
 {
   "name": "@vert-frame-core/design-system",
-  "version": "v0.0.4",
+  "version": "v0.1.6",
   "publishConfig": {
     "access": "public"
   },
@@ -30,10 +30,14 @@
     ".": {
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "files": [
-    "dist"
+    "dist/*"
   ],
   "bugs": {
     "url": "https://github.com/deboracastrodev/frame-vert-core/issues"

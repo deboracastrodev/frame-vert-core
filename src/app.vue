@@ -1,6 +1,7 @@
 <template>
-  <div style="width: 50%; padding-left: 20%">
-    <h1>Componente tabela</h1>
+  <div style="width: 50%; padding-left: 10%">
+    <h1>Componentes</h1>
+    <h4>Tabela</h4>
     <v-table
       :rows="[
         {
@@ -21,11 +22,14 @@
       ]"
       :cols="['column1', 'column2', 'column3']"
     />
+    <h4>Botões</h4>
     <div class="d-flex">
-      <v-button icon="close" status="helper"
+      <v-button icon="close" status="helper" @click="onClickButton"
         >Erro: 402 favor falar com desenvolvedor
       </v-button>
-      <v-button icon="alert" status="warning">Aviso</v-button>
+      <v-button icon="alert" status="warning" @click="onClickButtonWarning"
+        >Aviso</v-button
+      >
       <v-button icon="check" status="success">Sucesso</v-button>
       <v-button icon="info" status="primary">Padrão</v-button>
     </div>
@@ -56,16 +60,25 @@
         </v-tab-content>
       </div>
     </v-tab>
+    <br />
+    <h4>Paginação</h4>
+    <div>
+      <v-pagination
+        :count="pagination.count"
+        :page="pagination.page"
+        :size="pagination.size"
+        @change="onChange"
+      >
+      </v-pagination>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import VTable from "./components/table/VTable.vue";
-import VButton from "./components/button/VButton.vue";
+import { defineComponent, reactive } from "vue";
+import { VTable, VButton, VPagination } from "./index";
 import VTab from "./components/tab/VTab.vue";
 import VTabContent from "./components/tab/VTabContent.vue";
-import VTabHeader from "./components/tab/VTabHeader.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 
 export default defineComponent({
@@ -76,6 +89,31 @@ export default defineComponent({
     VTab,
     VTabContent,
     VTabHeader,
+    VPagination,
+  },
+  setup() {
+    function onChange(item: any) {
+      console.log(item);
+    }
+
+    const pagination = reactive({
+      count: 50,
+      page: 1,
+      size: 5,
+    });
+
+    return {
+      onChange,
+      pagination,
+    };
+  },
+  methods: {
+    onClickButton() {
+      alert("Erro: 402 favor falar com desenvolvedor");
+    },
+    onClickButtonWarning() {
+      alert("Aviso");
+    },
   },
 });
 </script>
@@ -85,4 +123,3 @@ export default defineComponent({
   flex-wrap: wrap;
 }
 </style>
-/>
