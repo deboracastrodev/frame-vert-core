@@ -1,22 +1,27 @@
-### VERT CAPITAL - Design System 
+# VERT CAPITAL - Design System 
 
 Biblioteca de componentes baseada no [Design System](https://design.vert-capital.com/) da VERT.
 
 ## COMO USAR
-Step 1
-´´´
+
+### Step 1
+Instalar biblioteca
+
+```bash
 npm i --save @vert-frame-core/design-system
-´´´
-Step 2
+```
+
+### Step 2
 Para importar estilo adicionar no arquivo main.ts
 
-´´´
+```typescript
 import '@vert-frame-core/design-system/dist/style.css';
-´´´
+```
 
-Step 3
+### Step 3
 Importar os componentes
-´´´
+
+```html
 <template>
     <v-button status="primary" size="lg" @click="onHandleClick">
       Exemplo
@@ -39,4 +44,4 @@ export default defineComponent({
   }
 });
 </script>
-´´´
+```
