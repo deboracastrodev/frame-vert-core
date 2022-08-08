@@ -19,6 +19,7 @@ $btns-color: (
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+
   @include mq(sm) {
     flex-wrap: nowrap;
   }
@@ -48,15 +49,18 @@ $btns-color: (
       background-color: darken($color, 5);
       border-color: darken($color, 5);
     }
-    & .v-btn--img{
+
+    & .v-btn--img {
       width: 1.25rem;
       height: 1.25rem;
+
       img {
         filter: invert(1);
         width: 1.25rem;
 
       }
     }
+
     &:focus {
       box-shadow: 0 0 0 0.25rem rgba($color, 0.24)
     }
@@ -72,9 +76,11 @@ $btns-color: (
     &:focus {
       background-color: rgba($color, $alpha: .2);
     }
+
     &:focus {
       box-shadow: 0 0 0 0.25rem rgba($color, 0.10)
     }
+
     & .v-btn--img {
       border-radius: 100%;
       background-color: rgba($color, $alpha: .5);
@@ -82,7 +88,8 @@ $btns-color: (
       height: 1.25rem;
       display: flex;
       align-items: center;
-      > img{
+
+      > img {
         filter: invert(1);
         width: 1rem;
       }
@@ -90,7 +97,7 @@ $btns-color: (
   }
 
   @else {
-    @error "Algo deu ruim no #{$color} ou no #{$type}";
+    @error "Erro no #{$color} ou no #{$type}";
   }
 }
 
@@ -154,35 +161,30 @@ $btns-color: (
       text-decoration: none;
       text-align: center;
       font-weight: bold;
-      // color: $brand-color-primary-pure;
       background: $neutral-color-hight-pure;
-      // border: 1px solid $brand-color-primary-pure;
       box-shadow: 0 4px 8px 0 rgba(0, 116, 122, 0.24);
 
       &:hover {
         color: $neutral-color-hight-pure;
-        // background: $brand-color-primary-pure;
       }
     }
 
     &--not {
       @extend %transition-link;
       text-decoration: none;
-      // color: $brand-color-primary-pure;
       border: none;
       background: transparent;
       font-weight: bold;
       padding: 0.75rem 2rem;
+      color: $neutral-color-hight-pure;
     }
   }
+
   & .v-btn--img {
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 100%;
     margin-right: .5rem;
-    // > img{
-    //   width: 1.25rem;
-    // }
   }
 }

@@ -27,18 +27,40 @@
       <v-button icon="check" status="success">Sucesso</v-button>
       <v-button icon="info" status="primary">Padrão</v-button>
     </div>
+    <h4>Paginação</h4>
+    <div>
+      <v-pagination :count="pagination.count" :page="pagination.page" :size="pagination.size" @change="onChange">
+      </v-pagination>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { VTable, VButton } from "./index";
+import { defineComponent, reactive } from "vue";
+import { VTable, VButton, VPagination } from "./index";
 
 export default defineComponent({
   name: "App",
   components: {
     VTable,
     VButton,
+    VPagination,
+  },
+  setup() {
+    function onChange(item: any) {
+      console.log(item);
+    }
+
+    const pagination = reactive({
+      count: 50,
+      page: 1,
+      size: 5,
+    });
+
+    return {
+      onChange,
+      pagination
+    }
   },
   methods: {
     onClickButton() {
@@ -46,7 +68,7 @@ export default defineComponent({
     },
     onClickButtonWarning() {
       alert("Aviso");
-    },
+    }
   }
 });
 </script>
@@ -56,4 +78,3 @@ export default defineComponent({
   flex-wrap: wrap;
 }
 </style>
-/>
