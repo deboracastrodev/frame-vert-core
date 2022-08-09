@@ -43,7 +43,6 @@ export default defineComponent({
         if (typeTab == item.dataset.tabContentType) item.style.display = "none";
 
         if (contentId == item.getAttribute("id")) {
-          console.log(contentId == item.getAttribute("id"));
           item.style.display = "block";
         }
       }

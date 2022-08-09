@@ -34,13 +34,15 @@
       <v-button icon="info" status="primary">Padrão</v-button>
     </div>
     <br />
-    <v-tab>
+    <v-tab :eixo="typeTab">
       <template #header>
-        <v-tab-header tabTo="tab1" actived>Exemplo 1</v-tab-header>
-        <v-tab-header tabTo="tab2">Exemplo 2</v-tab-header>
+        <v-tab-header tabTo="tab1" :eixo="typeTab" actived
+          >Exemplo 1</v-tab-header
+        >
+        <v-tab-header tabTo="tab2" :eixo="typeTab">Exemplo 2</v-tab-header>
       </template>
       <div>
-        <v-tab-content contentId="tab1">
+        <v-tab-content :eixo="typeTab" contentId="tab1">
           <h2>Le po pul</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
@@ -49,7 +51,7 @@
             maxime, ea dolorem eveniet consequuntur rerum!
           </p>
         </v-tab-content>
-        <v-tab-content contentId="tab2">
+        <v-tab-content :eixo="typeTab" contentId="tab2">
           <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo sint
@@ -90,6 +92,11 @@ export default defineComponent({
     VTabContent,
     VTabHeader,
     VPagination,
+  },
+  data() {
+    return {
+      typeTab: "x",
+    };
   },
   setup() {
     function onChange(item: any) {

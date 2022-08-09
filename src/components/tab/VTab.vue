@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div class="tab--x">
+    <div :class="`tab--${eixo}`">
       <slot name="header"></slot>
     </div>
     <slot></slot>
@@ -15,28 +15,6 @@ export default defineComponent({
     eixo: {
       type: String,
       default: "x",
-    },
-  },
-  methods: {
-    activeTab(): void {
-      const tabHead = event.path[1].children;
-      for (let item of tabHead) item.classList.remove("active");
-      event.target.classList.add("active");
-      this.showContentTab(
-        event?.target.dataset.tabTo,
-        event?.target.dataset.tabType
-      );
-    },
-    showContentTab(contentId: String, typeTab: String): void {
-      const tabContents = document.getElementsByClassName("tab--content");
-      for (let item of tabContents) {
-        if (typeTab == item.dataset.tabContentType) item.style.display = "none";
-
-        if (contentId == item.getAttribute("id")) {
-          console.log(contentId == item.getAttribute("id"));
-          item.style.display = "block";
-        }
-      }
     },
   },
 });
