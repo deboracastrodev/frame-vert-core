@@ -1,10 +1,5 @@
 <template>
-  <button
-    :class="{ active: actived }"
-    @click="activeTab"
-    :data-tab-type="eixo"
-    :data-tab-to="tabTo"
-  >
+  <button :class="{ active: actived }" @click="activeTab($event)" :data-tab-type="eixo" :data-tab-to="tabTo">
     <slot></slot>
   </button>
 </template>
@@ -28,7 +23,7 @@ export default defineComponent({
     },
   },
   methods: {
-    activeTab(): void {
+    activeTab(event: any): void {
       const tabHead = event.path[1].children;
       for (let item of tabHead) item.classList.remove("active");
       event.target.classList.add("active");
@@ -39,7 +34,7 @@ export default defineComponent({
     },
     showContentTab(contentId: String, typeTab: String): void {
       const tabContents = document.getElementsByClassName("tab--content");
-      for (let item of tabContents) {
+      for (let item of tabContents as any) {
         if (typeTab == item.dataset.tabContentType) item.style.display = "none";
 
         if (contentId == item.getAttribute("id")) {
