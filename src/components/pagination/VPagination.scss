@@ -27,6 +27,10 @@
         min-width: 32px;
         max-width: 120px;
         display: flex;
+
+        .v-select {
+          width: 120px;
+        }
       }
 
       &-itens {
@@ -37,7 +41,6 @@
           flex-wrap: wrap;
           list-style: none;
           color: $neutral-color-low-pure;
-          margin: 0;
 
           &_li {
             display: flex;
