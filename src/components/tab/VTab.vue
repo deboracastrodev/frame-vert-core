@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div class="tab--x">
+    <div :class="`tab--${eixo}`">
       <slot name="header"></slot>
     </div>
     <slot></slot>
@@ -16,10 +16,8 @@ export default defineComponent({
       type: String,
       default: "x",
     },
-  }
+  },
 });
 </script>
-
-
 
 <style src="./VTab.scss" />
