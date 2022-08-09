@@ -1,0 +1,82 @@
+@mixin tagCriate($color, $background-color, $font: 'Lato') {
+  @extend .v-tag;
+  color: $color;
+  background: $background-color;
+  & .v-tag--img {
+    border-radius: 100%;
+    display: flex;
+    align-items: end;
+    margin-right: .25rem;
+    > img {
+      filter: invert(1);
+      width: 1rem;
+    }
+  }
+}
+
+.v-tag {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  color: $neutral-color-low-pure;
+  background: $neutral-color-hight-medium;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4rem;
+  margin-right: 0.5rem;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+
+  button {
+    border: none;
+    background-color: transparent;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    color: $color-primary-pure;
+    padding: {
+      right: 0;
+      top: 0;
+      bottom: 0;
+      left: 0.2rem;
+    }
+  }
+  &--primary {
+    @include tagCriate($neutral-color-hight-pure, $feedback-color-default-pure);
+  }
+  &--secondary {
+    @include tagCriate($neutral-color-hight-pure, $feedback-color-helper-pure);
+  }
+  &--default {
+    @include tagCriate($feedback-color-default-pure, transparent);
+  }
+  &--info {
+    @include tagCriate($feedback-color-default-pure, $feedback-color-default-extra-light);
+  }
+  &--danger {
+    @include tagCriate(
+      $feedback-color-helper-medium,
+      $feedback-color-helper-extra-light
+    );
+  }
+  &--success {
+    @include tagCriate(
+      $feedback-color-success-pure,
+      $feedback-color-success-extra-light
+    );
+    // background: #d9ffee;
+  }
+  &--warning {
+    @include tagCriate(
+      $feedback-color-warning-pure,
+      $feedback-color-warning-extra-light
+    );
+    // background: #fff9db;
+  }
+  &--square {
+    font-family: 'Lato', sans-serif;
+    border-radius: 0.25rem;
+  }
+  &.mdi::before {
+    font-size: 1rem;
+    margin-right: 0.25rem;
+  }
+}
