@@ -1,17 +1,21 @@
 <template>
-  <div class="box box--select input-size-{{size}}">
-    <div>
-      <div class="input-group">
-        <label :for="id">{{ label }}</label>
-        <select name="{{name}}" id="{{id}}" :required="required" :disabled="disable" @change="selectChange($event)">
-          <option value="">Select</option>
-          <option v-for="option in options" :value="option.value" :selected="option.value == selected"
-            aria-checked="false">{{ option.label }}</option>
-        </select>
-      </div>
+  <div class="v-select">
+    <div class="v-select--label">
+      <label :for="id">{{ label }}</label>
+    </div>
+    <div class="v-selec--content">
+      <select :class="`v-select--input v-select--size-${size}`" :name="name" :id="id" :required="required"
+        :disabled="disable" @change="selectChange($event)">
+        <option value="" v-if="placeholder">{{ placeholder }}</option>
+        <option v-for="option in options" :value="option.value" :selected="option.value == selected"
+          aria-checked="false">
+          {{ option.label }}</option>
+      </select>
     </div>
   </div>
 </template>
+<style src="./VSelect.scss" lang="scss">
+</style>
 <script lang="ts">
 import { defineComponent } from "vue";
 
@@ -23,6 +27,10 @@ export default defineComponent({
       default: "",
     },
     name: {
+      type: String,
+      default: "",
+    },
+    placeholder: {
       type: String,
       default: "",
     },

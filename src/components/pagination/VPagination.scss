@@ -1,60 +1,80 @@
-ul.pagination {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0;
-  font-size: 0.75rem;
-  color: $neutral-color-low-pure;
-  width: fit-content;
+.box {
 
-  li {
+  &--pagination {
     display: flex;
-    align-self: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    align-items: center;
 
-    border: {
-      left: solid 1px $neutral-color-hight-medium;
-      top: solid 1px $neutral-color-hight-medium;
-      bottom: solid 1px $neutral-color-hight-medium;
-      right: solid 1px $neutral-color-hight-medium;
+    &-count {
+      width: 100px;
     }
 
-    &:first-child {
-      border-radius: 5rem 0 0 5rem;
+    &-size {
+      width: 250px;
+    }
 
-      a::before {
-        content: '<';
+    &-pages {
+      width: calc(100% - 350px);
+
+      ul.pagination {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        font-size: 0.875rem;
+        color: $neutral-color-low-pure;
+
+        li {
+          display: flex;
+          align-self: center;
+
+          border: {
+            left: solid 1px $neutral-color-hight-medium;
+            top: solid 1px $neutral-color-hight-medium;
+            bottom: solid 1px $neutral-color-hight-medium;
+            right: solid 1px $neutral-color-hight-medium;
+          }
+
+          &:first-child {
+            border-radius: 5rem 0 0 5rem;
+
+            a::before {
+              content: '<';
+            }
+          }
+
+          &:last-child {
+            border-radius: 0 5rem 5rem 0;
+
+            a::before {
+              content: '>';
+            }
+          }
+        }
       }
-    }
 
-    &:last-child {
-      border-radius: 0 5rem 5rem 0;
+      .pagination {
+        &--item {
+          padding: 10px;
+          text-decoration: none;
+          color: $neutral-color-low-medium;
+          min-width: 2.125rem;
+          box-sizing: border-box;
+          text-align: center;
+          cursor: pointer;
 
-      a::before {
-        content: '>';
+          &.active,
+          .active {
+            color: $color-primary-pure  !important;
+            font-weight: 800;
+          }
+
+          &:hover {
+            color: $neutral-color-low-pure;
+          }
+        }
       }
-    }
-  }
-}
-
-.pagination {
-  &--item {
-    padding: 9px;
-    text-decoration: none;
-    color: $neutral-color-low-medium;
-    min-width: 2.125rem;
-    box-sizing: border-box;
-    text-align: center;
-    cursor: pointer;
-
-    &.active,
-    .active {
-      color: $color-primary-pure  !important;
-      font-weight: 800;
-    }
-
-    &:hover {
-      color: $neutral-color-low-pure;
     }
   }
 }

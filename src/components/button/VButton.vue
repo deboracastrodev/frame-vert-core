@@ -23,7 +23,7 @@ export default defineComponent({
     },
     status: {
       type: String,
-      default: "helper",
+      default: "primary",
       required: true,
     },
     icon: {
@@ -47,6 +47,7 @@ export default defineComponent({
   },
 });
 </script>
+
 
 
 <style src="./VButton.scss" lang="scss" />
