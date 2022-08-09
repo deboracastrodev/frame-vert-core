@@ -3,23 +3,26 @@
     <div class="box--pagination-count">
       {{ count }} items
     </div>
-    <div class="box--pagination-size">
-      <v-select id="select_page_size" name="s-page-size" :options="options" size="sm" @change="onChangePageSize">
-      </v-select>
-    </div>
+
     <div class="box--pagination-pages">
-      <ul class="pagination">
-        <li>
-          <a class="pagination--item"></a>
-        </li>
-        <li v-for="(page, index) in pages">
-          <a class="pagination--item" :class="{ 'active': currentPage == page }" @click="onClickPage(page)">{{ page
-          }}</a>
-        </li>
-        <li>
-          <a class="pagination--item"></a>
-        </li>
-      </ul>
+      <div class="box--pagination-pages-size">
+        <v-select id="select_page_size" name="select_page_size" :options="options" size="sm" @change="onChangePageSize">
+        </v-select>
+      </div>
+      <div class="box--pagination-pages-itens">
+        <ul class="pagination">
+          <li class="pagination_li">
+            <a class="pagination_li--item"></a>
+          </li>
+          <li class="pagination_li" v-for="(page, index) in pages">
+            <a class="pagination_li--item" :class="{ 'active': currentPage == page }" @click="onClickPage(page)">{{ page
+            }}</a>
+          </li>
+          <li class="pagination_li">
+            <a class="pagination_li--item"></a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -79,6 +82,18 @@ export default defineComponent({
 });
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

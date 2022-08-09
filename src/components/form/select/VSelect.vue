@@ -1,6 +1,6 @@
 <template>
   <div class="v-select">
-    <div class="v-select--label">
+    <div class="v-select--label" v-if="label">
       <label :for="id">{{ label }}</label>
     </div>
     <div class="v-selec--content">
