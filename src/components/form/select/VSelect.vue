@@ -61,7 +61,7 @@ export default defineComponent({
   },
   methods: {
     selectChange(event: any): void {
-      this.$emit("change", event.target.value);
+      this.$emit("update:modelValue", event.target.value);
     },
   },
   data(): any {

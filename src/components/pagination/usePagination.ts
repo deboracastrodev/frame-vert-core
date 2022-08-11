@@ -52,7 +52,6 @@ const defaultOptions: Required<IOptions> = {
 
 export default (userOptions: IOptions): IPagination => {
   const options: Required<IOptions> = { ...defaultOptions, ...userOptions }
-
   const _page = ref(options.page)
   const pageSize = ref(options.pageSize)
   const numItems = ref(options.numItems)

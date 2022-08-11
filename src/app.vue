@@ -5,7 +5,7 @@
     <h4>TABELA E PAGINAÇÃO</h4>
     <br />
     <v-table :data="pokemons.results" :headers="['name', 'url']" />
-    <v-pagination :count="pagination.count" :page="pagination.page" :size="pagination.size"
+    <v-pagination :count="pagination.count" :currentPage="pagination.page" :size="pagination.size"
       @onChangePagination="onChangePagination">
     </v-pagination>
     <hr />
@@ -92,8 +92,8 @@ export default defineComponent({
   setup() {
     const pokemons = ref({ count: 0, next: "", previous: "", results: [] });
 
-    const pagination = ref({
-      count: 50,
+    const pagination = reactive({
+      count: 0,
       page: 1,
       size: 5,
     });
@@ -114,7 +114,6 @@ export default defineComponent({
     ]);
 
     function onChangePagination(data: any) {
-      console.log(data)
       updateDataPokemons({ offset: (Number(data.page_size) * Number(data.page)), limit: data.page_size });
     }
 
@@ -126,7 +125,7 @@ export default defineComponent({
 
     async function updateDataPokemons(data = { offset: 0, limit: 5 }) {
       pokemons.value = await getPokemons(data);
-      pagination.value.count = pokemons.value.count;
+      pagination.count = pokemons.value.count;
     }
 
     onMounted(async () => {

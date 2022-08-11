@@ -6,7 +6,7 @@
 
     <div class="box--pagination-pages">
       <div class="box--pagination-pages-size">
-        <v-select id="select_page_size" name="select_page_size" :options="options" size="sm" @change="onChangePageSize">
+        <v-select id="select_page_size" name="select_page_size" :options="options" size="sm" v-model="pageSize">
         </v-select>
       </div>
       <div class="box--pagination-pages-itens">
@@ -16,7 +16,7 @@
           </li>
           <li class="pagination_li" v-for="(button, idx) in buttons" :key="idx" @click="page = button.page">
             <a class="pagination_li--item" :class="{ 'active': button.active }">{{ button.ellipsis ? '...' : button.page
-              }}</a>
+            }}</a>
           </li>
           <li class="pagination_li" :class="!hasNext && 'disabled'" @click="goNext">
             <a class="pagination_li--item"></a>
@@ -40,7 +40,7 @@ export default defineComponent({
       type: Number,
       default: 0,
     },
-    page: {
+    currentPage: {
       type: Number,
       default: 1,
     },
@@ -51,11 +51,6 @@ export default defineComponent({
   },
   emits: ["onChangePagination"],
   setup(props, { emit }) {
-    const { page, pageSize, hasPrev, hasNext, goPrev, goNext, buttons } = usePaginator({
-      pageSize: props.size,
-      numItems: props.count,
-      numButtons: 5,
-    })
 
     const options = [
       {
@@ -80,15 +75,20 @@ export default defineComponent({
       },
     ];
 
-    watch([page, pageSize], ([newPage, newPageSize]) => {
-      emit('onChangePagination', { page: newPage, page_size: newPageSize })
+    const { page, pageSize, hasPrev, hasNext, goPrev, goNext, buttons, numPages, numItems } = usePaginator({
+      pageSize: props.size,
+      numButtons: 5,
     })
 
-    function onChangePageSize(newPageSize: number) {
-      pageSize.value = newPageSize;
-    }
+    watch(() => props.count, (count) => {
+      numItems.value = count;
+    });
 
-    return { options, hasPrev, hasNext, onChangePageSize, goPrev, goNext, buttons, page };
+    watch([page, pageSize], ([newPage, newPageSize]) => {
+      emit('onChangePagination', { page: newPage, page_size: newPageSize });
+    })
+
+    return { options, hasPrev, hasNext, pageSize, goPrev, goNext, buttons, page, numPages };
   }
 });
 
@@ -96,6 +96,27 @@ export default defineComponent({
 
 <style src="./VPagination.scss" lang="scss">
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
