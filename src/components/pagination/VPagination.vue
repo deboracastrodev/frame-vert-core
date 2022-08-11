@@ -10,27 +10,27 @@
         </v-select>
       </div>
       <div class="box--pagination-pages-itens">
-        <ul class="pagination">
-          <li class="pagination_li">
+        <ol class="pagination">
+          <li class="pagination_li" :class="!hasPrev && 'disabled'" @click="goPrev">
             <a class="pagination_li--item"></a>
           </li>
-          <li class="pagination_li" v-for="(page, index) in pages">
-            <a class="pagination_li--item" :class="{ 'active': currentPage == page }" @click="onClickPage(page)">{{ page
-            }}</a>
+          <li class="pagination_li" v-for="(button, idx) in buttons" :key="idx" @click="page = button.page">
+            <a class="pagination_li--item" :class="{ 'active': button.active }">{{ button.ellipsis ? '...' : button.page
+              }}</a>
           </li>
-          <li class="pagination_li">
+          <li class="pagination_li" :class="!hasNext && 'disabled'" @click="goNext">
             <a class="pagination_li--item"></a>
           </li>
-        </ul>
+        </ol>
       </div>
     </div>
   </div>
 </template>
-<style src="./VPagination.scss" lang="scss">
-</style>
+
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, watch } from "vue";
 import { VSelect } from '@/components/index'
+import usePaginator from './usePagination'
 
 export default defineComponent({
   name: "VPagination",
@@ -49,39 +49,99 @@ export default defineComponent({
       default: 5,
     }
   },
-  data() {
-    return {
-      currentPage: 1,
-      currentSize: 5,
-      options: [{ label: '5 items', value: 5 }, { label: '10 items', value: 10 }, { label: '50 items', value: 50 }, { label: '100 items', value: 100 }],
-    };
-  },
-  computed: {
-    pages(): number[] {
-      const pages = [];
-      const count = this.count;
-      const page = this.page;
-      const size = this.size;
-      const totalPages = Math.ceil(count / size);
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-      return pages;
+  emits: ["onChangePagination"],
+  setup(props, { emit }) {
+    const { page, pageSize, hasPrev, hasNext, goPrev, goNext, buttons } = usePaginator({
+      pageSize: props.size,
+      numItems: props.count,
+      numButtons: 5,
+    })
+
+    const options = [
+      {
+        value: "5",
+        label: "5 items",
+      },
+      {
+        value: "10",
+        label: "10 items",
+      },
+      {
+        value: "30",
+        label: "30 items",
+      },
+      {
+        value: "50",
+        label: "50 items",
+      },
+      {
+        value: "100",
+        label: "100 items",
+      },
+    ];
+
+    watch([page, pageSize], ([newPage, newPageSize]) => {
+      emit('onChangePagination', { page: newPage, page_size: newPageSize })
+    })
+
+    function onChangePageSize(newPageSize: number) {
+      pageSize.value = newPageSize;
     }
-  },
-  methods: {
-    onClickPage(page: number) {
-      this.currentPage = page;
-      this.$emit("onChangePagination", { page: page, page_size: this.currentSize });
-    },
-    onChangePageSize(size: number) {
-      this.currentSize = size;
-      this.$emit("onChangePagination", { page: this.currentPage, page_size: size });
-    }
+
+    return { options, hasPrev, hasNext, onChangePageSize, goPrev, goNext, buttons, page };
   }
 });
 
 </script>
+
+<style src="./VPagination.scss" lang="scss">
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
