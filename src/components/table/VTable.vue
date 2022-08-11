@@ -4,12 +4,12 @@
       <table class="responsive-table">
         <thead>
           <tr>
-            <th v-for="col in cols" class="v-table__cell">{{ col }}</th>
+            <th v-for="col in headers" class="v-table__cell">{{ col }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="v-table__row" v-for="(row, index) in rows" :key="index">
-            <td v-for="col in cols" class="v-table__cell">{{ (row as any)[(col as any)] }}</td>
+          <tr class="v-table__row" v-for="(row, index) in data" :key="index">
+            <td v-for="col in headers" class="v-table__cell">{{ (row as any)[(col as any)] }}</td>
           </tr>
         </tbody>
       </table>
@@ -22,11 +22,11 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'VTable',
   props: {
-    rows: {
+    data: {
       type: Array,
       required: true,
     },
-    cols: {
+    headers: {
       type: Array,
       required: true,
     },
