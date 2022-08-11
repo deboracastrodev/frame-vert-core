@@ -54,6 +54,10 @@ export default defineComponent({
       type: String,
       default: "lg",
     },
+    modelValue: {
+      type: String,
+      default: "",
+    },
   },
   methods: {
     selectChange(event: any): void {
@@ -67,6 +71,7 @@ export default defineComponent({
   },
   watch: {
     value(newValue: any): void {
+      this.$emit("update:modelValue", newValue);
       this.selected = newValue;
     },
   },
