@@ -1,44 +1,30 @@
 <template>
   <div style="width: 80%; padding-left: 10%">
-    <h1>Componentes</h1>
-    <h4>Tabela</h4>
-    <v-table :rows="[
-      {
-        column1: 'row1column1',
-        column2: 'row1column2',
-        column3: 'row1column3',
-      },
-      {
-        column1: 'row2column1',
-        column2: 'row2column2',
-        column3: 'row2column3',
-      },
-      {
-        column1: 'row3column1',
-        column2: 'row3column2',
-        column3: 'row3column3',
-      },
-    ]" :cols="['column1', 'column2', 'column3']" />
-    <v-pagination :count="pagination.count" :page="pagination.page" :size="pagination.size" @change="onChange">
-    </v-pagination>
+    <h1>COMPONENTES</h1>
+    <hr />
+    <h4>TABELA E PAGINAÇÃO</h4>
     <br />
-    <h4>Botões</h4>
+    <v-table :data="pokemons.results" :headers="['name', 'url']" />
+    <v-pagination :count="pagination.count" :page="pagination.page" :size="pagination.size"
+      @onChangePagination="onChangePagination">
+    </v-pagination>
+    <hr />
+    <h4>BOTÕES</h4>
+    <br />
     <div class="d-flex">
-      <v-button icon="close" status="helper" @click="onClickButton"
-        >Erro: 402 favor falar com desenvolvedor
+      <v-button icon="close" status="helper" @click="onClickButton">Erro: 402 favor falar com desenvolvedor
       </v-button>
-      <v-button icon="alert" status="warning" @click="onClickButtonWarning"
-        >Aviso</v-button
-      >
+      <v-button icon="alert" status="warning" @click="onClickButtonWarning">Aviso</v-button>
       <v-button icon="check" status="success" disabled>Sucesso</v-button>
       <v-button icon="info" status="primary">Padrão</v-button>
     </div>
     <br />
+    <hr />
+    <h4>TAB</h4>
+    <br />
     <v-tab :eixo="typeTab">
       <template #header>
-        <v-tab-header tabTo="tab1" :eixo="typeTab" actived
-          >Exemplo 1</v-tab-header
-        >
+        <v-tab-header tabTo="tab1" :eixo="typeTab" actived>Exemplo 1</v-tab-header>
         <v-tab-header tabTo="tab2" :eixo="typeTab">
           <v-tag icon="alert" status="secondary" square>2</v-tag>
           Exemplo 2
@@ -66,7 +52,9 @@
       </div>
     </v-tab>
     <br />
-    <h4>Select</h4>
+    <hr />
+    <h4>SELECT</h4>
+    <br />
     <div>
       <v-select id="app_select" name="select_app" :options="selectOptions" v-model="testeSelect"> </v-select>
     </div>
