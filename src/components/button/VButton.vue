@@ -1,5 +1,5 @@
 <template>
-  <button :class="[setSizeClass, setStatus]">
+  <button :class="[setSizeClass, setStatus]" :disabled="disabled">
     <div v-if="icon" class="v-btn--img">
       <img :src="setIcon" />
     </div>
@@ -30,6 +30,10 @@ export default defineComponent({
       type: String,
       required: false,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     setSizeClass(): string {
@@ -47,7 +51,5 @@ export default defineComponent({
   },
 });
 </script>
-
-
 
 <style src="./VButton.scss" lang="scss" />
