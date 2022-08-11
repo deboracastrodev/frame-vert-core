@@ -1,25 +1,10 @@
 <template>
-  <div style="width: 50%; padding-left: 10%">
+  <div style="width: 80%; padding-left: 10%">
     <h1>Componentes</h1>
     <h4>Tabela</h4>
-    <v-table :rows="[
-      {
-        column1: 'row1column1',
-        column2: 'row1column2',
-        column3: 'row1column3',
-      },
-      {
-        column1: 'row2column1',
-        column2: 'row2column2',
-        column3: 'row2column3',
-      },
-      {
-        column1: 'row3column1',
-        column2: 'row3column2',
-        column3: 'row3column3',
-      },
-    ]" :cols="['column1', 'column2', 'column3']" />
-    <v-pagination :count="pagination.count" :page="pagination.page" :size="pagination.size" @change="onChange">
+    <v-table :data="pokemons.results" :headers="['name', 'url']" />
+    <v-pagination :count="pagination.count" :page="pagination.page" :size="pagination.size"
+      @onChangePagination="onChangePagination">
     </v-pagination>
     <br />
     <h4>Botões</h4>
@@ -63,14 +48,14 @@
     <br />
     <h4>Select</h4>
     <div>
-      <v-select :options="options" @change="onChangeSelect"> </v-select>
+      <v-select id="app_select" name="select_app" :options="selectOptions" v-model="testeSelect"> </v-select>
     </div>
     <br />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, onMounted, reactive, ref } from "vue";
 import { VTable, VButton, VPagination } from "./index";
 import VTab from "./components/tab/VTab.vue";
 import VTabContent from "./components/tab/VTabContent.vue";
@@ -93,20 +78,19 @@ export default defineComponent({
   data() {
     return {
       typeTab: "x",
+      testeSelect: "",
     };
   },
   setup() {
-    function onChange(item: any) {
-      console.log(item);
-    }
+    const pokemons = ref({ count: 0, next: "", previous: "", results: [] });
 
-    const pagination = reactive({
+    const pagination = ref({
       count: 50,
       page: 1,
       size: 5,
     });
 
-    const options = reactive([
+    const selectOptions = reactive([
       {
         value: "1",
         label: "Option 1",
@@ -121,15 +105,31 @@ export default defineComponent({
       },
     ]);
 
-    function onChangeSelect(item: any) {
-      console.log(item);
+    function onChangePagination(data: any) {
+      console.log(data)
+      updateDataPokemons({ offset: (Number(data.page_size) * Number(data.page)), limit: data.page_size });
     }
 
+    const getPokemons = async (data: any) => {
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${data.offset}&limit=${data.limit}`);
+      const pokemons = await res.json();
+      return pokemons;
+    }
+
+    async function updateDataPokemons(data = { offset: 0, limit: 5 }) {
+      pokemons.value = await getPokemons(data);
+      pagination.value.count = pokemons.value.count;
+    }
+
+    onMounted(async () => {
+      updateDataPokemons()
+    });
+
     return {
-      onChange,
       pagination,
-      options,
-      onChangeSelect,
+      selectOptions,
+      pokemons,
+      onChangePagination
     };
   },
   methods: {
