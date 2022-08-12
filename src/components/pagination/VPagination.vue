@@ -6,7 +6,7 @@
 
     <div class="box--pagination-pages">
       <div class="box--pagination-pages-size">
-        <v-select id="select_page_size" name="select_page_size" :options="options" size="sm" v-model="pageSize">
+        <v-select id="select_page_size" name="select_page_size" :options="sizeOptions" size="sm" v-model="pageSize">
         </v-select>
       </div>
       <div class="box--pagination-pages-itens">
@@ -28,9 +28,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from "vue";
+import { defineComponent, watch, PropType } from "vue";
 import { VSelect } from '@/components/index'
 import usePaginator from './usePagination'
+import { ISelectOptions } from "../form/select/VSelect.vue";
 
 export default defineComponent({
   name: "VPagination",
@@ -44,40 +45,46 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
-    size: {
+    sizeDefault: {
       type: Number,
       default: 5,
-    }
+    },
+    sizeOptions: {
+      type: Array as PropType<Array<ISelectOptions>>,
+      default: () => [
+        {
+          value: "5",
+          label: "5 items",
+        },
+        {
+          value: "10",
+          label: "10 items",
+        },
+        {
+          value: "30",
+          label: "30 items",
+        },
+        {
+          value: "50",
+          label: "50 items",
+        },
+        {
+          value: "100",
+          label: "100 items",
+        },
+      ],
+    },
+    qtdeButtonsPaginate: {
+      type: Number,
+      default: 8,
+    },
   },
   emits: ["onChangePagination"],
   setup(props, { emit }) {
 
-    const options = [
-      {
-        value: "5",
-        label: "5 items",
-      },
-      {
-        value: "10",
-        label: "10 items",
-      },
-      {
-        value: "30",
-        label: "30 items",
-      },
-      {
-        value: "50",
-        label: "50 items",
-      },
-      {
-        value: "100",
-        label: "100 items",
-      },
-    ];
-
     const { page, pageSize, hasPrev, hasNext, goPrev, goNext, buttons, numPages, numItems } = usePaginator({
-      pageSize: props.size,
-      numButtons: 5,
+      pageSize: props.sizeDefault,
+      numButtons: props.qtdeButtonsPaginate,
     })
 
     watch(() => props.count, (count) => {
@@ -88,7 +95,7 @@ export default defineComponent({
       emit('onChangePagination', { page: newPage, page_size: newPageSize });
     })
 
-    return { options, hasPrev, hasNext, pageSize, goPrev, goNext, buttons, page, numPages };
+    return { hasPrev, hasNext, pageSize, goPrev, goNext, buttons, page, numPages };
   }
 });
 
@@ -96,6 +103,17 @@ export default defineComponent({
 
 <style src="./VPagination.scss" lang="scss">
 </style>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
