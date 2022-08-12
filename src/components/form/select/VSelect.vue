@@ -17,50 +17,28 @@
 <style src="./VSelect.scss" lang="scss">
 </style>
 <script lang="ts" setup>
-import { watch, defineProps, ref, PropType } from "vue";
+import { watch, ref } from "vue";
 
 export interface ISelectOptions {
   value: any
   label: string
 }
 
-defineProps({
-  id: {
-    type: String,
-    default: "",
-  },
-  name: {
-    type: String,
-    default: "",
-  },
-  placeholder: {
-    type: String,
-    default: "",
-  },
-  label: {
-    type: String,
-    default: "",
-  },
-  options: {
-    type: Array as PropType<Array<ISelectOptions>>,
-    default: () => [],
-  },
-  required: {
-    type: Boolean,
-    default: false,
-  },
-  disable: {
-    type: Boolean,
-    default: false,
-  },
-  size: {
-    type: String,
-    default: "lg",
-  },
-  modelValue: {
-    type: [String, Number],
-    default: "",
-  },
+export interface Props {
+  id?: string
+  name?: string
+  placeholder?: string
+  label?: string
+  options: Array<ISelectOptions>
+  required?: boolean
+  disable?: boolean
+  size?: string
+  modelValue?: string | number
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  size: 'lg',
+  options: () => []
 })
 
 const emit = defineEmits<{
