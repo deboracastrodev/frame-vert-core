@@ -14,7 +14,7 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-import { defineComponent, openBlock, createElementBlock, normalizeClass, createElementVNode, createCommentVNode, renderSlot, Fragment, renderList, toDisplayString, ref, computed, watch, resolveComponent, createVNode } from "vue";
+import { defineComponent, openBlock, createElementBlock, normalizeClass, createElementVNode, createCommentVNode, renderSlot, Fragment, renderList, toDisplayString, ref, watch, computed, resolveComponent, createVNode } from "vue";
 var VButton_scss_vue_type_style_index_0_src_6e5341db_lang = "";
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -67,7 +67,7 @@ const _hoisted_2$3 = {
   class: "v-btn--img"
 };
 const _hoisted_3$3 = ["src"];
-function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("button", {
     class: normalizeClass([_ctx.setSizeClass, _ctx.setStatus]),
     disabled: _ctx.disabled
@@ -78,7 +78,7 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 10, _hoisted_1$3);
 }
-var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$3]]);
+var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2]]);
 var VTable_scss_vue_type_style_index_0_src_52ffde09_lang = "";
 const _sfc_main$2 = defineComponent({
   name: "VTable",
@@ -98,7 +98,7 @@ const _hoisted_2$2 = { class: "v-table__body-wrapper" };
 const _hoisted_3$2 = { class: "responsive-table" };
 const _hoisted_4$2 = { class: "v-table__cell" };
 const _hoisted_5$2 = { class: "v-table__cell" };
-function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", _hoisted_1$2, [
     createElementVNode("div", _hoisted_2$2, [
       createElementVNode("table", _hoisted_3$2, [
@@ -125,10 +125,22 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2]]);
+var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1]]);
 var VSelect_scss_vue_type_style_index_0_src_4a2786ac_lang = "";
-const _sfc_main$1 = defineComponent({
-  name: "VSelect",
+const _hoisted_1$1 = { class: "v-select" };
+const _hoisted_2$1 = {
+  key: 0,
+  class: "v-select--label"
+};
+const _hoisted_3$1 = ["for"];
+const _hoisted_4$1 = { class: "v-selec--content" };
+const _hoisted_5$1 = ["name", "id", "required", "disabled"];
+const _hoisted_6$1 = {
+  key: 0,
+  value: ""
+};
+const _hoisted_7$1 = ["value", "selected"];
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   props: {
     id: {
       type: String,
@@ -148,7 +160,7 @@ const _sfc_main$1 = defineComponent({
     },
     options: {
       type: Array,
-      default: []
+      default: () => []
     },
     required: {
       type: Boolean,
@@ -163,67 +175,51 @@ const _sfc_main$1 = defineComponent({
       default: "lg"
     },
     modelValue: {
-      type: String,
+      type: [String, Number],
       default: ""
     }
   },
-  methods: {
-    selectChange(event) {
-      this.$emit("update:modelValue", event.target.value);
+  emits: ["onChange", "update:modelValue"],
+  setup(__props, { emit }) {
+    const selected = ref(null);
+    watch(["modelValue"], (modelValue) => {
+      if (modelValue !== selected.value) {
+        selected.value = modelValue;
+      }
+    });
+    function selectChange(event) {
+      selected.value = event.target.value;
+      emit("onChange", selected.value);
+      emit("update:modelValue", selected.value);
     }
-  },
-  data() {
-    return {
-      selected: this.value
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$1, [
+        __props.label ? (openBlock(), createElementBlock("div", _hoisted_2$1, [
+          createElementVNode("label", { for: __props.id }, toDisplayString(__props.label), 9, _hoisted_3$1)
+        ])) : createCommentVNode("v-if", true),
+        createElementVNode("div", _hoisted_4$1, [
+          createElementVNode("select", {
+            class: normalizeClass(`v-select--input v-select--size-${__props.size}`),
+            name: __props.name,
+            id: __props.id,
+            required: __props.required,
+            disabled: __props.disable,
+            onChange: _cache[0] || (_cache[0] = ($event) => selectChange($event))
+          }, [
+            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$1, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option) => {
+              return openBlock(), createElementBlock("option", {
+                value: option.value,
+                selected: option.value == selected.value,
+                "aria-checked": "false"
+              }, toDisplayString(option.label), 9, _hoisted_7$1);
+            }), 256))
+          ], 42, _hoisted_5$1)
+        ])
+      ]);
     };
-  },
-  watch: {
-    value(newValue) {
-      this.$emit("update:modelValue", newValue);
-      this.selected = newValue;
-    }
   }
 });
-const _hoisted_1$1 = { class: "v-select" };
-const _hoisted_2$1 = {
-  key: 0,
-  class: "v-select--label"
-};
-const _hoisted_3$1 = ["for"];
-const _hoisted_4$1 = { class: "v-selec--content" };
-const _hoisted_5$1 = ["name", "id", "required", "disabled"];
-const _hoisted_6$1 = {
-  key: 0,
-  value: ""
-};
-const _hoisted_7$1 = ["value", "selected"];
-function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$1, [
-    _ctx.label ? (openBlock(), createElementBlock("div", _hoisted_2$1, [
-      createElementVNode("label", { for: _ctx.id }, toDisplayString(_ctx.label), 9, _hoisted_3$1)
-    ])) : createCommentVNode("v-if", true),
-    createElementVNode("div", _hoisted_4$1, [
-      createElementVNode("select", {
-        class: normalizeClass(`v-select--input v-select--size-${_ctx.size}`),
-        name: _ctx.name,
-        id: _ctx.id,
-        required: _ctx.required,
-        disabled: _ctx.disable,
-        onChange: _cache[0] || (_cache[0] = ($event) => _ctx.selectChange($event))
-      }, [
-        _ctx.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$1, toDisplayString(_ctx.placeholder), 1)) : createCommentVNode("v-if", true),
-        (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.options, (option) => {
-          return openBlock(), createElementBlock("option", {
-            value: option.value,
-            selected: option.value == _ctx.selected,
-            "aria-checked": "false"
-          }, toDisplayString(option.label), 9, _hoisted_7$1);
-        }), 256))
-      ], 42, _hoisted_5$1)
-    ])
-  ]);
-}
-var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1]]);
 const defaultOptions = {
   page: 1,
   pageSize: 5,
@@ -356,7 +352,7 @@ var VPagination_scss_vue_type_style_index_0_src_3245b22b_lang = "";
 var VPagination_scss_vue_type_style_index_1_src_3245b22b_lang = "";
 const _sfc_main = defineComponent({
   name: "VPagination",
-  components: { VSelect },
+  components: { VSelect: _sfc_main$1 },
   props: {
     count: {
       type: Number,

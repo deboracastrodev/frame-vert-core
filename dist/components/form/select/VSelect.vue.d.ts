@@ -1,3 +1,8 @@
+import { PropType } from "vue";
+export interface ISelectOptions {
+    value: any;
+    label: string;
+}
 declare const _default: import("vue").DefineComponent<{
     id: {
         type: StringConstructor;
@@ -16,8 +21,8 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     options: {
-        type: ArrayConstructor;
-        default: never[];
+        type: PropType<ISelectOptions[]>;
+        default: () => never[];
     };
     required: {
         type: BooleanConstructor;
@@ -32,12 +37,14 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     modelValue: {
-        type: StringConstructor;
+        type: (StringConstructor | NumberConstructor)[];
         default: string;
     };
-}, unknown, any, {}, {
-    selectChange(event: any): void;
-}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, () => void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    onChange: (selected: any) => void;
+} & {
+    "update:modelValue": (selected: any) => void;
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     id: {
         type: StringConstructor;
         default: string;
@@ -55,8 +62,8 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     options: {
-        type: ArrayConstructor;
-        default: never[];
+        type: PropType<ISelectOptions[]>;
+        default: () => never[];
     };
     required: {
         type: BooleanConstructor;
@@ -71,18 +78,21 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     modelValue: {
-        type: StringConstructor;
+        type: (StringConstructor | NumberConstructor)[];
         default: string;
     };
-}>>, {
+}>> & {
+    onOnChange?: ((selected: any) => any) | undefined;
+    "onUpdate:modelValue"?: ((selected: any) => any) | undefined;
+}, {
     name: string;
     size: string;
     required: boolean;
     id: string;
     placeholder: string;
     label: string;
-    options: unknown[];
+    options: ISelectOptions[];
     disable: boolean;
-    modelValue: string;
+    modelValue: string | number;
 }>;
 export default _default;

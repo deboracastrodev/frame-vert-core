@@ -19,9 +19,11 @@ $btns-color: (
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  &:disabled{
+
+  &:disabled {
     cursor: default;
   }
+
   &:hover,
   &:active,
   &:focus,
@@ -48,6 +50,7 @@ $btns-color: (
       background-color: darken($color, 5);
       border-color: darken($color, 5);
     }
+
     &:disabled {
       background-color: rgba($color, 0.5);
       border-color: rgba($color, 0);
