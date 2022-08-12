@@ -1,3 +1,5 @@
+import { PropType } from "vue";
+import { ISelectOptions } from "../form/select/VSelect.vue";
 declare const _default: import("vue").DefineComponent<{
     count: {
         type: NumberConstructor;
@@ -7,15 +9,22 @@ declare const _default: import("vue").DefineComponent<{
         type: NumberConstructor;
         default: number;
     };
-    size: {
+    sizeDefault: {
+        type: NumberConstructor;
+        default: number;
+    };
+    sizeOptions: {
+        type: PropType<ISelectOptions[]>;
+        default: () => {
+            value: string;
+            label: string;
+        }[];
+    };
+    qtdeButtonsPaginate: {
         type: NumberConstructor;
         default: number;
     };
 }, {
-    options: {
-        value: string;
-        label: string;
-    }[];
     hasPrev: import("vue").ComputedRef<boolean>;
     hasNext: import("vue").ComputedRef<boolean>;
     pageSize: import("vue").Ref<number>;
@@ -33,15 +42,28 @@ declare const _default: import("vue").DefineComponent<{
         type: NumberConstructor;
         default: number;
     };
-    size: {
+    sizeDefault: {
+        type: NumberConstructor;
+        default: number;
+    };
+    sizeOptions: {
+        type: PropType<ISelectOptions[]>;
+        default: () => {
+            value: string;
+            label: string;
+        }[];
+    };
+    qtdeButtonsPaginate: {
         type: NumberConstructor;
         default: number;
     };
 }>> & {
     onOnChangePagination?: ((...args: any[]) => any) | undefined;
 }, {
-    size: number;
     count: number;
     currentPage: number;
+    sizeDefault: number;
+    sizeOptions: ISelectOptions[];
+    qtdeButtonsPaginate: number;
 }>;
 export default _default;

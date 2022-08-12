@@ -1,44 +1,50 @@
-import { PropType } from "vue";
 export interface ISelectOptions {
     value: any;
     label: string;
 }
+export interface Props {
+    id?: string;
+    name?: string;
+    placeholder?: string;
+    label?: string;
+    options: Array<ISelectOptions>;
+    required?: boolean;
+    disable?: boolean;
+    size?: string;
+    modelValue?: string | number;
+}
 declare const _default: import("vue").DefineComponent<{
     id: {
-        type: StringConstructor;
-        default: string;
+        type: import("vue").PropType<string>;
     };
     name: {
-        type: StringConstructor;
-        default: string;
+        type: import("vue").PropType<string>;
     };
     placeholder: {
-        type: StringConstructor;
-        default: string;
+        type: import("vue").PropType<string>;
     };
     label: {
-        type: StringConstructor;
-        default: string;
+        type: import("vue").PropType<string>;
     };
     options: {
-        type: PropType<ISelectOptions[]>;
+        type: import("vue").PropType<ISelectOptions[]>;
+        required: true;
+    } & {
         default: () => never[];
     };
     required: {
-        type: BooleanConstructor;
-        default: boolean;
+        type: import("vue").PropType<boolean>;
     };
     disable: {
-        type: BooleanConstructor;
-        default: boolean;
+        type: import("vue").PropType<boolean>;
     };
     size: {
-        type: StringConstructor;
+        type: import("vue").PropType<string>;
+    } & {
         default: string;
     };
     modelValue: {
-        type: (StringConstructor | NumberConstructor)[];
-        default: string;
+        type: import("vue").PropType<string | number>;
     };
 }, () => void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     onChange: (selected: any) => void;
@@ -46,53 +52,42 @@ declare const _default: import("vue").DefineComponent<{
     "update:modelValue": (selected: any) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     id: {
-        type: StringConstructor;
-        default: string;
+        type: import("vue").PropType<string>;
     };
     name: {
-        type: StringConstructor;
-        default: string;
+        type: import("vue").PropType<string>;
     };
     placeholder: {
-        type: StringConstructor;
-        default: string;
+        type: import("vue").PropType<string>;
     };
     label: {
-        type: StringConstructor;
-        default: string;
+        type: import("vue").PropType<string>;
     };
     options: {
-        type: PropType<ISelectOptions[]>;
+        type: import("vue").PropType<ISelectOptions[]>;
+        required: true;
+    } & {
         default: () => never[];
     };
     required: {
-        type: BooleanConstructor;
-        default: boolean;
+        type: import("vue").PropType<boolean>;
     };
     disable: {
-        type: BooleanConstructor;
-        default: boolean;
+        type: import("vue").PropType<boolean>;
     };
     size: {
-        type: StringConstructor;
+        type: import("vue").PropType<string>;
+    } & {
         default: string;
     };
     modelValue: {
-        type: (StringConstructor | NumberConstructor)[];
-        default: string;
+        type: import("vue").PropType<string | number>;
     };
 }>> & {
     onOnChange?: ((selected: any) => any) | undefined;
     "onUpdate:modelValue"?: ((selected: any) => any) | undefined;
 }, {
-    name: string;
     size: string;
-    required: boolean;
-    id: string;
-    placeholder: string;
-    label: string;
     options: ISelectOptions[];
-    disable: boolean;
-    modelValue: string | number;
 }>;
 export default _default;

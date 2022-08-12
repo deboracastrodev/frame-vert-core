@@ -142,42 +142,15 @@ const _hoisted_6$1 = {
 const _hoisted_7$1 = ["value", "selected"];
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   props: {
-    id: {
-      type: String,
-      default: ""
-    },
-    name: {
-      type: String,
-      default: ""
-    },
-    placeholder: {
-      type: String,
-      default: ""
-    },
-    label: {
-      type: String,
-      default: ""
-    },
-    options: {
-      type: Array,
-      default: () => []
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    disable: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: String,
-      default: "lg"
-    },
-    modelValue: {
-      type: [String, Number],
-      default: ""
-    }
+    id: { type: String, required: false },
+    name: { type: String, required: false },
+    placeholder: { type: String, required: false },
+    label: { type: String, required: false },
+    options: { type: Array, required: true, default: () => [] },
+    required: { type: Boolean, required: false },
+    disable: { type: Boolean, required: false },
+    size: { type: String, required: false, default: "lg" },
+    modelValue: { type: [String, Number], required: false }
   },
   emits: ["onChange", "update:modelValue"],
   setup(__props, { emit }) {
@@ -362,38 +335,45 @@ const _sfc_main = defineComponent({
       type: Number,
       default: 1
     },
-    size: {
+    sizeDefault: {
       type: Number,
       default: 5
+    },
+    sizeOptions: {
+      type: Array,
+      default: () => [
+        {
+          value: "5",
+          label: "5 items"
+        },
+        {
+          value: "10",
+          label: "10 items"
+        },
+        {
+          value: "30",
+          label: "30 items"
+        },
+        {
+          value: "50",
+          label: "50 items"
+        },
+        {
+          value: "100",
+          label: "100 items"
+        }
+      ]
+    },
+    qtdeButtonsPaginate: {
+      type: Number,
+      default: 8
     }
   },
   emits: ["onChangePagination"],
   setup(props, { emit }) {
-    const options = [
-      {
-        value: "5",
-        label: "5 items"
-      },
-      {
-        value: "10",
-        label: "10 items"
-      },
-      {
-        value: "30",
-        label: "30 items"
-      },
-      {
-        value: "50",
-        label: "50 items"
-      },
-      {
-        value: "100",
-        label: "100 items"
-      }
-    ];
     const { page, pageSize, hasPrev, hasNext, goPrev, goNext, buttons, numPages, numItems } = usePaginator({
-      pageSize: props.size,
-      numButtons: 5
+      pageSize: props.sizeDefault,
+      numButtons: props.qtdeButtonsPaginate
     });
     watch(() => props.count, (count) => {
       numItems.value = count;
@@ -401,7 +381,7 @@ const _sfc_main = defineComponent({
     watch([page, pageSize], ([newPage, newPageSize]) => {
       emit("onChangePagination", { page: newPage, page_size: newPageSize });
     });
-    return { options, hasPrev, hasNext, pageSize, goPrev, goNext, buttons, page, numPages };
+    return { hasPrev, hasNext, pageSize, goPrev, goNext, buttons, page, numPages };
   }
 });
 const _hoisted_1 = { class: "box--pagination" };
@@ -428,7 +408,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         createVNode(_component_v_select, {
           id: "select_page_size",
           name: "select_page_size",
-          options: _ctx.options,
+          options: _ctx.sizeOptions,
           size: "sm",
           modelValue: _ctx.pageSize,
           "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.pageSize = $event)
