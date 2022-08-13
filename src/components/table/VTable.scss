@@ -31,6 +31,41 @@ table.responsive-table {
   th {
     padding: 0.5rem 1.5rem;
     text-align: start;
+
+    &.sortable {
+      cursor: pointer;
+
+      .sortType-icon {
+        border: 5px solid transparent;
+        margin-top: -3px;
+        margin-left: 4px;
+        display: inline-block;
+        height: 0;
+        width: 0;
+        position: relative;
+        border-bottom-color: #e0e0e0;
+      }
+
+      &.none {
+        &:hover {
+          .sortType-icon {
+            opacity: 1;
+          }
+        }
+
+        .sortType-icon {
+          opacity: 0;
+          transition: 0.5s ease;
+        }
+      }
+
+      &.desc {
+        .sortType-icon {
+          margin-top: 5px;
+          transform: rotate(180deg);
+        }
+      }
+    }
   }
 
   td {
@@ -48,7 +83,6 @@ table.responsive-table {
     position: relative;
 
     td:empty:before {
-      // :empty vazio
       content: " ";
     }
 

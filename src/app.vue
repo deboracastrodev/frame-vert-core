@@ -4,7 +4,10 @@
     <hr />
     <h4>TABELA E PAGINAÇÃO</h4>
     <br />
-    <v-table :data="pokemons.results" :headers="['name', 'url']" />
+    <v-table :data="pokemons.results"
+      :headers="[{ label: 'Nome', prop: 'name', sortable: true }, { prop: 'url', label: 'Link', personalizaded: true }]">
+      <template #item-url="{ url }"><a :href="url" target="_blank">{{ url }}</a></template>
+    </v-table>
     <v-pagination :count="pagination.count" :currentPage="pagination.page" :size="pagination.size"
       @onChangePagination="onChangePagination">
     </v-pagination>
