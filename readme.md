@@ -1,4 +1,4 @@
-# VERT CAPITAL - Design System 
+# VERT - Design System 
 
 Biblioteca de componentes baseada no [Design System](https://design.vert-capital.com/) da VERT.
 
