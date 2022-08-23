@@ -15,13 +15,13 @@
     "frontend"
   ],
   "license": "MIT",
-  "author": "Vert Tech",
+  "author": "VertTec - Débora Castro <deboracastro.pm@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/deboracastrodev/frame-vert-core.git"
   },
   "main": "./dist/index.cjs.js",
-  "module": "./dist/index.esm.js",
+  "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
   "unpkg": "./dist/index.umd.js",
   "jsdelivr": "./dist/index.umd.js",
@@ -89,6 +89,9 @@
     "vitest": "^0.7.6",
     "vue": "^3.2.31",
     "vue-tsc": "^0.29.8"
+  },
+  "engines": {
+    "node": "&gt;= 14.18.0"
   },
   "volta": {
     "node": "14.19.1"
