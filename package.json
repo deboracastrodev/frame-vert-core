@@ -1,6 +1,6 @@
 {
   "name": "@vert-frame-core/design-system",
-  "version": "v0.1.8",
+  "version": "v0.2.0",
   "publishConfig": {
     "access": "public"
   },

@@ -15,6 +15,7 @@ declare const _default: import("vue").DefineComponent<{}, {
         results: never[];
     }>;
     onChangePagination: (data: any) => void;
+    clickRowTable: (row: any) => void;
 }, {
     typeTab: string;
     testeSelect: string;
