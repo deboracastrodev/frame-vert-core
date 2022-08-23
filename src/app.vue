@@ -5,7 +5,8 @@
     <h4>TABELA E PAGINAÇÃO</h4>
     <br />
     <v-table :data="pokemons.results"
-      :headers="[{ label: 'Nome', prop: 'name', sortable: true }, { prop: 'url', label: 'Link', personalizaded: true }]">
+      :headers="[{ label: 'Nome', prop: 'name', sortable: true, sortType: 'asc' }, { prop: 'url', label: 'Link', personalizaded: true }]"
+      @clickRow="clickRowTable">
       <template #item-url="{ url }"><a :href="url" target="_blank">{{ url }}</a></template>
     </v-table>
     <v-pagination :count="pagination.count" :currentPage="pagination.page" :size="pagination.size"
@@ -135,11 +136,17 @@ export default defineComponent({
       updateDataPokemons()
     });
 
+    function clickRowTable(row: any) {
+      console.log(row);
+      alert('click na linha: ' + row.name);
+    }
+
     return {
       pagination,
       selectOptions,
       pokemons,
-      onChangePagination
+      onChangePagination,
+      clickRowTable
     };
   },
   methods: {

@@ -4,19 +4,20 @@
       <table class="responsive-table">
         <thead>
           <tr>
+
             <th v-for="col in headers" class="v-table__cell" :class="[{
               'sortable': col.sortable,
               'none': col.sortable && col.sortType === 'none',
               'desc': col.sortable && col.sortType === 'desc',
               'asc': col.sortable && col.sortType === 'asc',
-              // eslint-disable-next-line max-len
-            }]"> {{ col.label }}</th>
+            }]" @click.stop="(col.sortable && col.sortType) ? updateSortField(col.prop, col.sortType) : null">
+              {{ col.label }}</th>
           </tr>
         </thead>
         <tbody>
           <template v-for=" (item, index) in data" :key="index">
             <tr class="v-table__row" @click="clickRow(item)">
-              <td v-for="col in             headers" class="v-table__cell">
+              <td v-for="col in headers" class="v-table__cell">
                 <slot v-if="slots[`item-${col.prop}`]" :name="`item-${col.prop}`" v-bind="item" />
                 <template v-else>
                   {{ generateColumnContent(col.prop, item as any) }}
@@ -33,7 +34,7 @@
 <style src="./VTable.scss" lang="scss">
 </style>
 <script lang="ts">
-import { defineComponent, PropType, useSlots } from 'vue';
+import { defineComponent, PropType, ref, useSlots } from 'vue';
 import { generateColumnContent } from '../../utils';
 
 export interface IHeader {
@@ -43,6 +44,7 @@ export interface IHeader {
   prop: string;
   sortType?: 'none' | 'desc' | 'asc';
 }
+export type SortType = 'asc' | 'desc'
 
 export default defineComponent({
   name: 'VTable',
@@ -56,16 +58,47 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ['click-row'],
+  emits: ['click-row', 'update-sort-field'],
   setup(props, { emit }) {
     const slots = useSlots();
     const clickRow = (item: any) => {
       emit('click-row', item);
     };
+
+    const mustSort = ref(false);
+    const clientSortOptions = ref<any>({});
+
+    const updateSortField = (newSortBy: string, oldSortType: SortType | 'none') => {
+      console.log('newSortBy', newSortBy);
+      console.log('oldSortType', oldSortType);
+      let newSortType: SortType | null = null;
+      if (oldSortType === 'none') {
+        newSortType = 'asc';
+      } else if (oldSortType === 'asc') {
+        newSortType = 'desc';
+      } else {
+        newSortType = (mustSort.value) ? 'asc' : null;
+      }
+
+      if (newSortType === null) {
+        clientSortOptions.value = null;
+      } else {
+        clientSortOptions.value = {
+          sortBy: newSortBy,
+          sortDesc: newSortType === 'desc',
+        };
+      }
+      emit('update-sort-field', {
+        sortType: newSortType,
+        sortBy: newSortBy,
+      });
+    };
+
     return {
       slots,
       clickRow,
-      generateColumnContent
+      generateColumnContent,
+      updateSortField
     };
   }
 });
