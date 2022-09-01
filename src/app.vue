@@ -84,21 +84,6 @@
       >
       </v-select>
     </div>
-    <br />
-    <div class="d-flex">
-      <v-button status="helper">Teste</v-button>
-      <v-button status="helper" type="outline">Teste</v-button>
-      <v-button status="helper" type="shadow">Teste</v-button>
-      <v-button status="warning">Teste</v-button>
-      <v-button status="warning" type="outline">Teste</v-button>
-      <v-button status="warning" type="shadow">Teste</v-button>
-      <v-button status="success">Teste</v-button>
-      <v-button status="success" type="outline">Teste</v-button>
-      <v-button status="success" type="shadow">Teste</v-button>
-      <v-button status="primary">Teste</v-button>
-      <v-button status="primary" type="outline">Teste</v-button>
-      <v-button status="primary" type="shadow">Teste</v-button>
-    </div>
   </div>
 </template>
 
