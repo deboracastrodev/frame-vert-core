@@ -4,21 +4,35 @@
     <hr />
     <h4>TABELA E PAGINAÇÃO</h4>
     <br />
-    <v-table :data="pokemons.results"
-      :headers="[{ label: 'Nome', prop: 'name', sortable: true, sortType: 'asc' }, { prop: 'url', label: 'Link', personalizaded: true }]"
-      @clickRow="clickRowTable">
-      <template #item-url="{ url }"><a :href="url" target="_blank">{{ url }}</a></template>
+    <v-table
+      :data="pokemons.results"
+      :headers="[
+        { label: 'Nome', prop: 'name', sortable: true, sortType: 'asc' },
+        { prop: 'url', label: 'Link', personalizaded: true },
+      ]"
+      @clickRow="clickRowTable"
+    >
+      <template #item-url="{ url }"
+        ><a :href="url" target="_blank">{{ url }}</a></template
+      >
     </v-table>
-    <v-pagination :count="pagination.count" :currentPage="pagination.page" :size="pagination.size"
-      @onChangePagination="onChangePagination">
+    <v-pagination
+      :count="pagination.count"
+      :currentPage="pagination.page"
+      :size="pagination.size"
+      @onChangePagination="onChangePagination"
+    >
     </v-pagination>
     <hr />
     <h4>BOTÕES</h4>
     <br />
     <div class="d-flex">
-      <v-button icon="close" status="helper" @click="onClickButton">Erro: 402 favor falar com desenvolvedor
+      <v-button icon="close" status="helper" @click="onClickButton"
+        >Erro: 402 favor falar com desenvolvedor
       </v-button>
-      <v-button icon="alert" status="warning" @click="onClickButtonWarning">Aviso</v-button>
+      <v-button icon="alert" status="warning" @click="onClickButtonWarning"
+        >Aviso</v-button
+      >
       <v-button icon="check" status="success" disabled>Sucesso</v-button>
       <v-button icon="info" status="primary">Padrão</v-button>
     </div>
@@ -28,7 +42,9 @@
     <br />
     <v-tab :eixo="typeTab">
       <template #header>
-        <v-tab-header tabTo="tab1" :eixo="typeTab" actived>Exemplo 1</v-tab-header>
+        <v-tab-header tabTo="tab1" :eixo="typeTab" actived
+          >Exemplo 1</v-tab-header
+        >
         <v-tab-header tabTo="tab2" :eixo="typeTab">
           <v-tag icon="alert" status="secondary" square>2</v-tag>
           Exemplo 2
@@ -60,9 +76,29 @@
     <h4>SELECT</h4>
     <br />
     <div>
-      <v-select id="app_select" name="select_app" :options="selectOptions" v-model="testeSelect"> </v-select>
+      <v-select
+        id="app_select"
+        name="select_app"
+        :options="selectOptions"
+        v-model="testeSelect"
+      >
+      </v-select>
     </div>
     <br />
+    <div class="d-flex">
+      <v-button status="helper">Teste</v-button>
+      <v-button status="helper" type="outline">Teste</v-button>
+      <v-button status="helper" type="shadow">Teste</v-button>
+      <v-button status="warning">Teste</v-button>
+      <v-button status="warning" type="outline">Teste</v-button>
+      <v-button status="warning" type="shadow">Teste</v-button>
+      <v-button status="success">Teste</v-button>
+      <v-button status="success" type="outline">Teste</v-button>
+      <v-button status="success" type="shadow">Teste</v-button>
+      <v-button status="primary">Teste</v-button>
+      <v-button status="primary" type="outline">Teste</v-button>
+      <v-button status="primary" type="shadow">Teste</v-button>
+    </div>
   </div>
 </template>
 
@@ -118,14 +154,19 @@ export default defineComponent({
     ]);
 
     function onChangePagination(data: any) {
-      updateDataPokemons({ offset: (Number(data.page_size) * Number(data.page)), limit: data.page_size });
+      updateDataPokemons({
+        offset: Number(data.page_size) * Number(data.page),
+        limit: data.page_size,
+      });
     }
 
     const getPokemons = async (data: any) => {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${data.offset}&limit=${data.limit}`);
+      const res = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/?offset=${data.offset}&limit=${data.limit}`
+      );
       const pokemons = await res.json();
       return pokemons;
-    }
+    };
 
     async function updateDataPokemons(data = { offset: 0, limit: 5 }) {
       pokemons.value = await getPokemons(data);
@@ -133,12 +174,12 @@ export default defineComponent({
     }
 
     onMounted(async () => {
-      updateDataPokemons()
+      updateDataPokemons();
     });
 
     function clickRowTable(row: any) {
       console.log(row);
-      alert('click na linha: ' + row.name);
+      alert("click na linha: " + row.name);
     }
 
     return {
@@ -146,7 +187,7 @@ export default defineComponent({
       selectOptions,
       pokemons,
       onChangePagination,
-      clickRowTable
+      clickRowTable,
     };
   },
   methods: {

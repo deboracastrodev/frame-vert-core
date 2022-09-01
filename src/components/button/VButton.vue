@@ -17,10 +17,6 @@ export default defineComponent({
       type: String,
       default: "md",
     },
-    outline: {
-      type: Boolean,
-      default: false,
-    },
     status: {
       type: String,
       default: "primary",
@@ -34,16 +30,17 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: "solid",
+    },
   },
   computed: {
     setSizeClass(): string {
       return `v-btn--${this.size}`;
     },
     setStatus(): string {
-      const status = this.outline
-        ? `v-btn__outline--${this.status}`
-        : `v-btn--${this.status}`;
-      return status;
+      return `v-btn__${this.type}--${this.status}`;
     },
     setIcon(): string {
       return `/static/icons/${this.icon}.svg`;
