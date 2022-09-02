@@ -3,6 +3,7 @@ $btns-color: (
   "warning": $feedback-color-warning-pure,
   "success": $feedback-color-success-pure,
   "primary": $feedback-color-default-pure,
+  "secondary": $neutral-color-low-medium
 );
 
 .v__btn {
@@ -18,6 +19,7 @@ $btns-color: (
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  height: fit-content;
   cursor: pointer;
 
   &:disabled {
@@ -102,6 +104,24 @@ $btns-color: (
     }
   }
 
+  @else if $type ==shadow {
+    color: $color;
+    border: solid 1px $color;
+    background-color: $neutral-color-hight-pure;
+    box-shadow: 0 4px 8px 0 rgba($color, 0.24);
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $color;
+      color: $neutral-color-hight-pure
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgba($color, 0.10)
+    }
+  }
+
   @else {
     @error "Erro no #{$color} ou no #{$type}";
   }
@@ -111,12 +131,14 @@ $btns-color: (
 
   @each $name,
   $color in $btns {
-    .v-btn--#{$name} {
+    .v-btn__solid--#{$name} {
       @include btn($color);
     }
-
     .v-btn__outline--#{$name} {
       @include btn($color, outline);
+    }
+    .v-btn__shadow--#{$name} {
+      @include btn($color, shadow);
     }
   }
 }
@@ -133,12 +155,12 @@ $btns-color: (
     }
 
     &--md {
-      padding: 0.75rem 2rem;
+      padding: .5625rem 2rem;
     }
 
     &--lg {
       font-size: 1rem;
-      padding: 0.75rem 2rem;
+      padding: .8125rem 2rem;
     }
 
     &--icon {
@@ -153,25 +175,6 @@ $btns-color: (
         position: absolute;
         font-size: 1.25rem;
         margin-right: 1rem;
-      }
-    }
-
-    &--default {
-      font-size: 0.875rem;
-      border-radius: $border-radius-pill;
-      padding: 0.75rem 2rem;
-      width: fit-content;
-      display: inline-block;
-      transition: all ease-in-out 0.25s;
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-      font-weight: bold;
-      background: $neutral-color-hight-pure;
-      box-shadow: 0 4px 8px 0 rgba(0, 116, 122, 0.24);
-
-      &:hover {
-        color: $neutral-color-hight-pure;
       }
     }
 
