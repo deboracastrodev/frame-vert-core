@@ -3,10 +3,6 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
-    outline: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
     status: {
         type: StringConstructor;
         default: string;
@@ -19,6 +15,10 @@ declare const _default: import("vue").DefineComponent<{
     disabled: {
         type: BooleanConstructor;
         default: boolean;
+    };
+    type: {
+        type: StringConstructor;
+        default: string;
     };
 }, unknown, unknown, {
     setSizeClass(): string;
@@ -29,10 +29,6 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
-    outline: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
     status: {
         type: StringConstructor;
         default: string;
@@ -46,10 +42,14 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    type: {
+        type: StringConstructor;
+        default: string;
+    };
 }>>, {
     size: string;
-    outline: boolean;
     status: string;
     disabled: boolean;
+    type: string;
 }>;
 export default _default;

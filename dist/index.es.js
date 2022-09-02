@@ -30,10 +30,6 @@ const _sfc_main$7 = defineComponent({
       type: String,
       default: "md"
     },
-    outline: {
-      type: Boolean,
-      default: false
-    },
     status: {
       type: String,
       default: "primary",
@@ -46,6 +42,10 @@ const _sfc_main$7 = defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    type: {
+      type: String,
+      default: "solid"
     }
   },
   computed: {
@@ -53,8 +53,7 @@ const _sfc_main$7 = defineComponent({
       return `v-btn--${this.size}`;
     },
     setStatus() {
-      const status = this.outline ? `v-btn__outline--${this.status}` : `v-btn--${this.status}`;
-      return status;
+      return `v-btn__${this.type}--${this.status}`;
     },
     setIcon() {
       return `/static/icons/${this.icon}.svg`;
@@ -612,6 +611,11 @@ const _sfc_main = defineComponent({
       default: "helper",
       required: true
     },
+    type: {
+      type: String,
+      default: "solid",
+      required: true
+    },
     icon: {
       type: String,
       required: false
@@ -634,7 +638,7 @@ const _hoisted_1 = {
 const _hoisted_2 = ["src"];
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
-    class: normalizeClass([`v-tag--${_ctx.status}`, { "v-tag--square": _ctx.square }])
+    class: normalizeClass([`v-tag__${_ctx.type}--${_ctx.status}`, { "v-tag--square": _ctx.square }])
   }, [
     _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_1, [
       createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_2)
