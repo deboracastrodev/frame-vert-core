@@ -27,7 +27,11 @@
     <h4>BOTÕES</h4>
     <br />
     <div class="d-flex">
-      <v-button icon="close" status="helper" @click="onClickButton"
+      <v-button
+        icon="close"
+        style_type="shadow"
+        status="helper"
+        @click="onClickButton"
         >Erro: 402 favor falar com desenvolvedor
       </v-button>
       <v-button icon="alert" status="warning" @click="onClickButtonWarning"
@@ -84,6 +88,16 @@
       >
       </v-select>
     </div>
+    <form>
+      <input type="text" />
+      <v-button
+        icon="info"
+        status="primary"
+        style_type="outline"
+        @click="onClickButtonWarning"
+        >Padrão</v-button
+      >
+    </form>
   </div>
 </template>
 

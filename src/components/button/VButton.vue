@@ -1,5 +1,10 @@
 <template>
-  <button :class="[setSizeClass, setStatus]" :disabled="disabled">
+  <button
+    :class="[setSizeClass, setStatus]"
+    :disabled="disabled"
+    type="button"
+    v-bind="$attrs"
+  >
     <div v-if="icon" class="v-btn--img">
       <img :src="setIcon" />
     </div>
@@ -30,7 +35,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    type: {
+    style_type: {
       type: String,
       default: "solid",
     },
@@ -40,7 +45,7 @@ export default defineComponent({
       return `v-btn--${this.size}`;
     },
     setStatus(): string {
-      return `v-btn__${this.type}--${this.status}`;
+      return `v-btn__${this.style_type}--${this.status}`;
     },
     setIcon(): string {
       return `/static/icons/${this.icon}.svg`;
