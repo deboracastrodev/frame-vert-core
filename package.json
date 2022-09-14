@@ -1,6 +1,6 @@
 {
   "name": "@vert-frame-core/design-system",
-  "version": "v0.3.1",
+  "version": "v0.3.2",
   "publishConfig": {
     "access": "public"
   },
@@ -91,7 +91,7 @@
     "vue-tsc": "^0.29.8"
   },
   "engines": {
-    "node": "&gt;= 14.18.0"
+    "node": ">= 14.18.0"
   },
   "volta": {
     "node": "14.19.1"
