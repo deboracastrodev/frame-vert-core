@@ -14,7 +14,7 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-import { defineComponent, openBlock, createElementBlock, normalizeClass, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, withModifiers, toDisplayString, normalizeProps, mergeProps, createTextVNode, watch, computed, resolveComponent, createVNode } from "vue";
+import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, resolveComponent, createVNode } from "vue";
 var VButton_scss_vue_type_style_index_0_src_6e5341db_lang = "";
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -43,7 +43,7 @@ const _sfc_main$7 = defineComponent({
       type: Boolean,
       default: false
     },
-    type: {
+    style_type: {
       type: String,
       default: "solid"
     }
@@ -53,7 +53,7 @@ const _sfc_main$7 = defineComponent({
       return `v-btn--${this.size}`;
     },
     setStatus() {
-      return `v-btn__${this.type}--${this.status}`;
+      return `v-btn__${this.style_type}--${this.status}`;
     },
     setIcon() {
       return `/static/icons/${this.icon}.svg`;
@@ -67,15 +67,16 @@ const _hoisted_2$4 = {
 };
 const _hoisted_3$3 = ["src"];
 function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("button", {
-    class: normalizeClass([_ctx.setSizeClass, _ctx.setStatus]),
-    disabled: _ctx.disabled
-  }, [
+  return openBlock(), createElementBlock("button", mergeProps({
+    class: [_ctx.setSizeClass, _ctx.setStatus],
+    disabled: _ctx.disabled,
+    type: "button"
+  }, _ctx.$attrs), [
     _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_2$4, [
       createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_3$3)
     ])) : createCommentVNode("v-if", true),
     renderSlot(_ctx.$slots, "default")
-  ], 10, _hoisted_1$7);
+  ], 16, _hoisted_1$7);
 }
 var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6]]);
 function getItemValue(column, item) {
