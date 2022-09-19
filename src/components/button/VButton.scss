@@ -15,10 +15,7 @@ $btns-color: (
   transition: all ease-in-out 0.25s;
   text-decoration: none;
   font-weight: bold;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  @include flx(center,center,wrap);
   height: fit-content;
   cursor: pointer;
 
@@ -58,17 +55,6 @@ $btns-color: (
       border-color: rgba($color, 0);
     }
 
-    & .v-btn--img {
-      width: 1.25rem;
-      height: 1.25rem;
-
-      img {
-        filter: invert(1);
-        width: 1.25rem;
-
-      }
-    }
-
     &:focus {
       box-shadow: 0 0 0 0.25rem rgba($color, 0.24)
     }
@@ -87,20 +73,6 @@ $btns-color: (
 
     &:focus {
       box-shadow: 0 0 0 0.25rem rgba($color, 0.10)
-    }
-
-    & .v-btn--img {
-      border-radius: 100%;
-      background-color: rgba($color, $alpha: .5);
-      width: 1.25rem;
-      height: 1.25rem;
-      display: flex;
-      align-items: center;
-
-      > img {
-        filter: invert(1);
-        width: 1rem;
-      }
     }
   }
 
@@ -140,13 +112,24 @@ $btns-color: (
     .v-btn__shadow--#{$name} {
       @include btn($color, shadow);
     }
+    .v-btn__text--#{$name} {
+      color: $color;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      background-color: transparent;
+      transition: all ease-in-out 0.25s;
+      @include flx(center,center,wrap);
+      cursor: pointer;
+      &:hover{
+        opacity: .7;
+        text-decoration: underline
+      }
+    }
   }
 }
 
 @include create-btn($btns-color);
-
-// .v-btn--color
-// .v-btn__outline--color
 
 [class^="v-btn-"] {
   &.v-btn {
@@ -162,38 +145,5 @@ $btns-color: (
       font-size: 1rem;
       padding: .8125rem 2rem;
     }
-
-    &--icon {
-      display: flex;
-      align-items: center;
-      position: relative;
-      padding-left: 3.5rem;
-      width: fit-content;
-
-      i.mdi {
-        left: 1.5rem;
-        position: absolute;
-        font-size: 1.25rem;
-        margin-right: 1rem;
-      }
-    }
-
-    &--not {
-      @extend %transition-link;
-      text-decoration: none;
-      border: none;
-      background: transparent;
-      font-weight: bold;
-      padding: 0.75rem 2rem;
-      color: $neutral-color-hight-pure;
-    }
-  }
-
-  & .v-btn--img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    margin-right: .5rem;
   }
 }

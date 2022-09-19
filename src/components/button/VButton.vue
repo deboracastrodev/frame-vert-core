@@ -5,9 +5,6 @@
     type="button"
     v-bind="$attrs"
   >
-    <div v-if="icon" class="v-btn--img">
-      <img :src="setIcon" />
-    </div>
     <slot />
   </button>
 </template>
@@ -27,10 +24,6 @@ export default defineComponent({
       default: "primary",
       required: true,
     },
-    icon: {
-      type: String,
-      required: false,
-    },
     disabled: {
       type: Boolean,
       default: false,
@@ -46,9 +39,6 @@ export default defineComponent({
     },
     setStatus(): string {
       return `v-btn__${this.style_type}--${this.status}`;
-    },
-    setIcon(): string {
-      return `/static/icons/${this.icon}.svg`;
     },
   },
 });

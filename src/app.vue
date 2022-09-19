@@ -28,17 +28,15 @@
     <br />
     <div class="d-flex">
       <v-button
-        icon="close"
-        style_type="shadow"
         status="helper"
+        size="sm"
+        style_type="text"
         @click="onClickButton"
         >Erro: 402 favor falar com desenvolvedor
       </v-button>
-      <v-button icon="alert" status="warning" @click="onClickButtonWarning"
-        >Aviso</v-button
-      >
-      <v-button icon="check" status="success" disabled>Sucesso</v-button>
-      <v-button icon="info" status="primary">Padrão</v-button>
+      <v-button status="primary" size="sm">Padrão</v-button>
+      <v-button status="warning" @click="onClickButtonWarning">Aviso</v-button>
+      <v-button status="success" size="lg" disabled>Sucesso</v-button>
     </div>
     <br />
     <hr />
@@ -88,16 +86,6 @@
       >
       </v-select>
     </div>
-    <form>
-      <input type="text" />
-      <v-button
-        icon="info"
-        status="primary"
-        style_type="outline"
-        @click="onClickButtonWarning"
-        >Padrão</v-button
-      >
-    </form>
   </div>
 </template>
 
